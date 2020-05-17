@@ -1,0 +1,55 @@
+body {
+    margin: 0px;
+    background-image: url(assets/topography.png);
+}
+
+header {
+    background-color: #333333;
+    padding: 10px 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo a {
+    padding: 0px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+}
+
+a {
+    color: #ff0099;
+    text-transform: uppercase;
+    padding-left: 40px;
+}
+
+main {
+    padding: 10px 10%;
+}
+
+h1, h2, h3 {
+    font-family: 'Kalam', cursive;
+}
+
+h2 {
+    color: #ff0099;
+}
+
+#wiki h2 {
+    text-align: center;
+    color: black;
+    margin: 30px;
+}
+
+p {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+hr {
+    border: 0;
+    background-color: #fff;
+    border-top: 1px dashed #8c8c8c;
+    width: 30px;
+}
