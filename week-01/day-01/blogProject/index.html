@@ -10,21 +10,23 @@
 
 <body>
     <header>
-        <h2>The Blog</h2>
+        <p id="pageTitle">The Blog</p>
     </header>
     <main>
         <section id="newPost">
             <h2>Add new post</h2>
-            <form action="" method="post">
-                <input type="text" name="Title" id="inputTitle" label="Title">
-                <input type="text" name="Content" id="inputContent" label="Content">
-                <button type="submit">Submit</button>
+            <form action="#" method="post">
+                <label for="inputTitle">Title</label>
+                <input type="text" name="Title" id="inputTitle" size="50" placeholder="Give a title to your post">
+                <label for="inputContent">Content</label>
+                <textarea name="Content" id="inputContent" rows="10" placeholder="Type your content here"></textarea>
+                <input type="submit" value="Submit">
             </form>
         </section>
         <section id="posts">
             <h2>Posts</h2>
             <article>
-                <h1>Lorem ipsum dolor sit amet.</h1>
+                <h2>Lorem ipsum dolor sit amet.</h2>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla erat libero, ultricies vitae sem ut,
                     tincidunt congue sem. Duis venenatis laoreet orci, porttitor semper sem ornare sit amet. Duis rutrum
@@ -38,7 +40,7 @@
                     justo. Aliquam erat volutpat. Aliquam erat volutpat.</p>
             </article>
             <article>
-                <h1>Lorem ipsum dolor sit amet.</h1>
+                <h2>Lorem ipsum dolor sit amet.</h2>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla erat libero, ultricies vitae sem ut,
                     tincidunt congue sem. Duis venenatis laoreet orci, porttitor semper sem ornare sit amet. Duis rutrum
@@ -52,7 +54,7 @@
                     justo. Aliquam erat volutpat. Aliquam erat volutpat.</p>
             </article>
             <article>
-                <h1>Lorem ipsum dolor sit amet.</h1>
+                <h2>Lorem ipsum dolor sit amet.</h2>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla erat libero, ultricies vitae sem ut,
                     tincidunt congue sem. Duis venenatis laoreet orci, porttitor semper sem ornare sit amet. Duis rutrum
