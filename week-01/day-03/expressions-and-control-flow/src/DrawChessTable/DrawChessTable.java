@@ -1,7 +1,5 @@
 package DrawChessTable;
 
-import java.util.Scanner;
-
 public class DrawChessTable {
   public static void main(String[] args) {
     int size = 8;
