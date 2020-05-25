@@ -17,7 +17,7 @@ public class AppendAFunc {
   }
 
   public static String appendAFunc(String word) {
-    word = word + "a";
+    word += "a";
     return word;
   }
 }
