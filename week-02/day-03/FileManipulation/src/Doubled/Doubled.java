@@ -12,7 +12,7 @@ import java.util.List;
 public class Doubled {
   public static void main(String[] args) {
     String filename = "duplicated-chars.txt";
-    String decryptedFile = "decrypted.txt";
+    String decryptedFile = "duplicated-chars-decrypted.txt";
 
     deduplication(filename, decryptedFile);
   }
