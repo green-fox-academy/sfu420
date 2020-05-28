@@ -12,10 +12,7 @@ import javax.swing.JPanel;
 public class LinePlay {
   public static void mainDraw(Graphics graphics) {
 
-    Color color1 = Color.GREEN;
-    Color color2 = Color.GREEN;
     int raster = 18;
-    int rasterSize = WIDTH / raster;
     for (int i = 0; i < raster; i++) {
       lineDrawer(0, WIDTH - (raster * i), graphics);
     }
