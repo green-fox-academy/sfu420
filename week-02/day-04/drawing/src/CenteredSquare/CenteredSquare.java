@@ -11,10 +11,10 @@ public class CenteredSquare {
   public static void mainDraw(Graphics graphics) {
     // Draw a green 10x10 square to the canvas' center.
 
-    int sideLenght = 150;
-    int xStart = WIDTH / 2 - sideLenght / 2;
-    int yStart = HEIGHT / 2 - sideLenght / 2;
-    graphics.drawRect(xStart, yStart, sideLenght, sideLenght);
+    int sideLength = 150;
+    int xStart = WIDTH / 2 - sideLength / 2;
+    int yStart = HEIGHT / 2 - sideLength / 2;
+    graphics.drawRect(xStart, yStart, sideLength, sideLength);
   }
 
   // Don't touch the code below
