@@ -14,10 +14,10 @@ public class LinePlay {
 
     Color color1 = Color.GREEN;
     Color color2 = Color.GREEN;
-    int raster = 12;
+    int raster = 18;
     int rasterSize = WIDTH / raster;
-    for (int i = 1; i <= raster; i++) {
-      lineDrawer(0, rasterSize * i, graphics);
+    for (int i = 0; i < raster; i++) {
+      lineDrawer(0, WIDTH - (raster * i), graphics);
     }
   }
 
