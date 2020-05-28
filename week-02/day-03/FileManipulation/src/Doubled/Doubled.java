@@ -25,7 +25,7 @@ public class Doubled {
       for (String line : lines) {
         StringBuilder decryptedLine = new StringBuilder();
         char[] charsByLine = line.toCharArray();
-        for (int i = 0; i < charsByLine.length; i = i + 2) {
+        for (int i = 0; i < charsByLine.length; i += 2) {
           decryptedLine.append(charsByLine[i]);
         }
         newLines.add(decryptedLine.toString());
