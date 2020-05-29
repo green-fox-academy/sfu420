@@ -12,8 +12,13 @@ import javax.swing.JPanel;
 public class LinePlayQuarters {
   public static void mainDraw(Graphics graphics) {
 
-    int rasterQty = 10;
-    int quarters = 4;
+    int rasterQty = 12;
+    int quarters = 16;
+
+    lineDrawer(rasterQty, quarters, graphics);
+  }
+
+  public static void lineDrawer(int rasterQty, int quarters, Graphics graphics) {
     int rows = (int) Math.sqrt(quarters);
     int cols = (int) Math.sqrt(quarters);
     int quarterWidth = WIDTH / cols;
@@ -37,13 +42,6 @@ public class LinePlayQuarters {
       }
     }
   }
-
-//  public static void lineDrawer(int x, int y, Graphics graphics) {
-//    graphics.setColor(Color.GREEN);
-//    graphics.drawLine(x, y, y, HEIGHT);
-//    graphics.setColor(Color.BLUE);
-//    graphics.drawLine(y, x, WIDTH, y);
-//  }
 
   // Don't touch the code below
   static int WIDTH = 640;
