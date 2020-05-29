@@ -23,7 +23,7 @@ public class LinePlayQuarters {
     int cols = (int) Math.sqrt(quarters);
     int quarterWidth = WIDTH / cols;
     int quarterHeight = HEIGHT / rows;
-    int rasterSize = (int) quarterWidth / rasterQty;
+    int rasterSize = quarterWidth / rasterQty;
 
     for (int col = 0; col < cols; col++) {
       for (int row = rows; row > 0; row--) {
