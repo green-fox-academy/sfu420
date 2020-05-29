@@ -12,14 +12,28 @@ import javax.swing.JPanel;
 public class LinePlayQuarters {
   public static void mainDraw(Graphics graphics) {
 
-    int raster = 18;
-    int quarters = 1;
-    int quarterWidth = WIDTH / quarters;
-    int quarterHeight = HEIGHT / quarters;
-    for (int i = 0; i < quarters; i++) {
-      for (int j = 0; j < raster; j++) {
-        graphics.drawLine(quarterWidth * i, quarterHeight - (raster * j),quarterHeight - (raster * j), quarterHeight);
-        graphics.drawLine(quarterWidth - (raster * j), quarterHeight * i, quarterWidth, quarterHeight - (raster * j));
+    int rasterQty = 10;
+    int quarters = 4;
+    int rows = (int) Math.sqrt(quarters);
+    int cols = (int) Math.sqrt(quarters);
+    int quarterWidth = WIDTH / cols;
+    int quarterHeight = HEIGHT / rows;
+    int rasterSize = (int) quarterWidth / rasterQty;
+
+    for (int col = 0; col < cols; col++) {
+      for (int row = rows; row > 0; row--) {
+        for (int j = 1; j < rasterQty; j++) {
+          int leftBottomCornerX = col * quarterWidth;
+          int leftBottomCornerY = row * quarterHeight;
+          int x1 = leftBottomCornerX;
+          int y1 = leftBottomCornerY - (rasterSize * j);
+          int x2 = (leftBottomCornerX + quarterWidth) - (rasterSize * j);
+          int y2 = leftBottomCornerY;
+          graphics.setColor(Color.RED);
+          graphics.drawLine(x1, y1, x2, y2);
+          graphics.setColor(Color.BLUE);
+          graphics.drawLine(y1, x1, y2, x2);
+        }
       }
     }
   }
@@ -32,8 +46,8 @@ public class LinePlayQuarters {
 //  }
 
   // Don't touch the code below
-  static int WIDTH = 320;
-  static int HEIGHT = 320;
+  static int WIDTH = 640;
+  static int HEIGHT = 640;
 
   public static void main(String[] args) {
     JFrame jFrame = new JFrame("Drawing");
