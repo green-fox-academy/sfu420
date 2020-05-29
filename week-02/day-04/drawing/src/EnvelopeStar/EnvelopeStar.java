@@ -21,7 +21,7 @@ public class EnvelopeStar {
     int rasterSize = WIDTH / rasterQty;
 
     for (int j = 0; j < rasterQty; j++) {
-      if (rasterSize * j <= WIDTH / 2) {
+      if (rasterSize * j < WIDTH / 2) {
         graphics.setColor(Color.ORANGE);
         graphics.drawLine(WIDTH / 2, j * rasterSize, (WIDTH / 2) - (j * rasterSize), WIDTH / 2);
         graphics.drawLine(WIDTH / 2, j * rasterSize, (WIDTH / 2) + (j * rasterSize), WIDTH / 2);
