@@ -7,7 +7,8 @@ public class BlogPost {
   String authorName;
   String title;
   String text;
-  LocalDate publicationDate;
+//  LocalDate publicationDate;
+  String publicationDate;
 
   public BlogPost() {
     this(null, null, null, null);
@@ -17,8 +18,8 @@ public class BlogPost {
     this.authorName = authorName;
     this.title = title;
     this.text = text;
-
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
-    this.publicationDate = LocalDate.parse(publicationDate, formatter);
+    this.publicationDate = publicationDate;
+//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+//    this.publicationDate = LocalDate.parse(publicationDate, formatter);
   }
 }
