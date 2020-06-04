@@ -12,7 +12,6 @@ public class BlogPost {
   String publicationDate;
 
   public BlogPost() {
-    this(null, null, null, null);
   }
 
   public BlogPost(String authorName, String title, String text, String publicationDate) {
