@@ -1,31 +1,41 @@
-package pirates;
+package pirate;
 
 public class Pirate {
   int pirateToxicLevel;
   boolean isPirateDead;
   boolean isCaptain;
+  boolean isPassedOut;
 
   public Pirate() {
     this.pirateToxicLevel = 0;
-    this.isPirateDead = False;
-    this.isCaptain = False;
+    this.isPirateDead = false;
+    this.isCaptain = false;
+    this.isPassedOut = false;
+  }
+
+  public Pirate(boolean isCaptain) {
+    this.pirateToxicLevel = 0;
+    this.isPirateDead = false;
+    this.isCaptain = isCaptain;
+    this.isPassedOut = false;
   }
 
   public void drinkSomeRum() {
-    if (this.pirateToxicLevel < 100) {
-      this.pirateToxicLevel += 25;
+    if (this.pirateToxicLevel < 4) {
+      this.pirateToxicLevel += 1;
     }
   }
 
   public void howItGoingMate() {
     if (!this.isPirateDead()) {
-      if (this.pirateToxicLevel < 100) {
+      if (this.pirateToxicLevel < 4) {
         System.out.println("Pour me anudder!");
         drinkSomeRum();
       } else {
         System.out.println(
             "Arghh, I'ma Pirate. How d'ya d'ink its goin?"); // TODO = the pirate passes out and sleeps it off.
-        this.pirateToxicLevel = 0;
+        this.isPassedOut = true;
+//        this.pirateToxicLevel = 0;
       }
     } else {
       System.out.println("He's dead");
@@ -33,7 +43,7 @@ public class Pirate {
   }
 
   public void die() {
-    this.isPirateDead = True;
+    this.isPirateDead = true;
   }
 
   public boolean isPirateDead() {
