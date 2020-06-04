@@ -23,7 +23,7 @@ public class Farm {
 
   public Animal leastHungry() {
     Animal leastHungryAnimal = new Animal();
-    int minHunger = animals.get(0).getHunger();
+    int minHunger = 100;
     for (Animal item : animals) {
       if (item.getHunger() < minHunger) {
         leastHungryAnimal = item;
