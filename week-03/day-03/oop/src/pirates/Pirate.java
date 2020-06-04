@@ -48,9 +48,9 @@ public class Pirate {
 //      3 = both pirates die
       if (resultOfFight == 1) {
         this.die();
-      }else if(resultOfFight == 2) {
+      } else if (resultOfFight == 2) {
         pirate.die();
-      } else if {
+      } else if (resultOfFight == 3) {
         this.die();
         pirate.die();
       }
