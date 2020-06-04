@@ -9,6 +9,10 @@ public class Animal {
     this.thirst = 50;
   }
 
+  public int getHunger() {
+    return this.hunger;
+  }
+
   public void eat() {
     this.hunger--;
   }
