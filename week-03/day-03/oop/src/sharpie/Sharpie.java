@@ -14,4 +14,8 @@ public class Sharpie {
   public void use() {
     this.inkAmount--;
   }
+
+  public float getInkAmount() {
+    return inkAmount;
+  }
 }
