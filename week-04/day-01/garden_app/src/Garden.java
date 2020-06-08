@@ -19,7 +19,7 @@ public class Garden {
 
   public void getStatus() {
     for (Plant plant : this.plants) {
-      System.out.println("The " + plant.color + plant.getClass().toString().substring(5) +
+      System.out.println("The " + plant.color + " " + plant.getClass().getName() +
           (plant.isNeedsWater() ? " needs water" : " doesn't need water"));
     }
   }
