@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class Cohort {
-  String name;
-  ArrayList<Student> students;
-  ArrayList<Mentor> mentors;
+  private String name;
+  private ArrayList<Student> students;
+  private ArrayList<Mentor> mentors;
 
   public Cohort(String name) {
     this.name = name;
@@ -21,7 +21,7 @@ public class Cohort {
 
   public void info() {
     System.out.println(
-        "The " + name + " cohort has " + students.size() + " students and " + mentors.size() +
+        "The " + this.name + " cohort has " + this.students.size() + " students and " + this.mentors.size() +
             " mentors.");
   }
 }

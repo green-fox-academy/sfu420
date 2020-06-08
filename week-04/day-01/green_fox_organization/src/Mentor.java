@@ -1,9 +1,9 @@
 public class Mentor extends Person {
-  String level;
+  private String level;
 
   public Mentor() {
     super();
-    level = "intermediate";
+    this.level = "intermediate";
   }
 
   public Mentor(String name, int age, String gender, String level) {
@@ -17,7 +17,7 @@ public class Mentor extends Person {
   }
 
   @Override
-  public String introExtender() {
+  protected String introExtender() {
     return ", " + this.level + " mentor.";
   }
 }

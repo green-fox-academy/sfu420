@@ -1,7 +1,7 @@
 public class Person {
-  String name;
-  int age;
-  String gender;
+  protected String name;
+  protected int age;
+  protected String gender;
 
   public Person() {
     this.name = "Jane Doe";
@@ -20,7 +20,7 @@ public class Person {
         "Hi, I'm " + this.name + ", a " + this.age + " year old " + this.gender + introExtender());
   }
 
-  public String introExtender() {
+  protected String introExtender() {
     return ".";
   }
 

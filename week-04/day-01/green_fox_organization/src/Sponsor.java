@@ -1,6 +1,6 @@
 public class Sponsor extends Person {
-  String company;
-  int hiredStudents;
+  private String company;
+  private int hiredStudents;
 
   public Sponsor() {
     super();
@@ -15,7 +15,7 @@ public class Sponsor extends Person {
   }
 
   @Override
-  public String introExtender() {
+  protected String introExtender() {
     return ", who represents " + this.company + " and hired " + this.hiredStudents +
         " students so far.";
   }

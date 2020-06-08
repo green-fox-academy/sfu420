@@ -1,6 +1,6 @@
 public class Student extends Person {
-  String previousOrganization;
-  int skippedDays;
+  private String previousOrganization;
+  private int skippedDays;
 
   public Student() {
     super();
@@ -20,12 +20,12 @@ public class Student extends Person {
   }
 
   @Override
-  public String introExtender() {
+  protected String introExtender() {
     return " from " + this.previousOrganization + ", who skipped " + this.skippedDays +
         " days from the course already.";
   }
 
   public void skipDays(int numberOfDays) {
-    skippedDays += numberOfDays;
+    this.skippedDays += numberOfDays;
   }
 }
