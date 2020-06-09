@@ -29,6 +29,7 @@ public class Student extends Person {
     this.skippedDays += numberOfDays;
   }
 
+  // Week-03/day-02/Cloneable exercise
   @Override
   protected Student clone() {
     Student newClone = new Student();

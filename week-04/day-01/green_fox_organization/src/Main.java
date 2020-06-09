@@ -21,8 +21,8 @@ public class Main {
     Sponsor elon = new Sponsor("Elon Musk", 46, "male", "SpaceX");
     people.add(elon);
 
-    Student johnTheClone = john.clone();
-    people.add(johnTheClone);
+    Student johnTheClone = john.clone();  // Week-03/day-02/Cloneable exercise
+    people.add(johnTheClone);  // Week-03/day-02/Cloneable exercise
 
     student.skipDays(3);
 
@@ -42,7 +42,7 @@ public class Main {
     Cohort awesome = new Cohort("AWESOME");
     awesome.addStudent(student);
     awesome.addStudent(john);
-    awesome.addStudent(johnTheClone);
+    awesome.addStudent(johnTheClone);  // Week-03/day-02/Cloneable exercise
     awesome.addMentor(mentor);
     awesome.addMentor(gandhi);
     awesome.info();
