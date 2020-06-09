@@ -1,8 +1,8 @@
 package domino;
 
 public class Domino implements Comparable<Domino> {
-  private final int left;
-  private final int right;
+  private final Integer left;
+  private final Integer right;
 
   public Domino(int left, int right) {
     this.left = left;
@@ -24,6 +24,11 @@ public class Domino implements Comparable<Domino> {
 
   @Override
   public int compareTo(Domino o) {
-    return this.toString().compareTo(o.toString());
+//    return this.toString().compareTo(o.toString());
+    if (this.left.compareTo(o.left) == 0) {
+      return this.right.compareTo(o.right);
+    } else {
+      return this.left.compareTo(o.left);
+    }
   }
 }
