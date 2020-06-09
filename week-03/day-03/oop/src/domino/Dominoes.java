@@ -1,6 +1,7 @@
 package domino;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Dominoes {
@@ -10,15 +11,15 @@ public class Dominoes {
     // Order them into one snake where the adjacent dominoes have the same numbers on their adjacent sides
     // eg: [2, 4], [4, 3], [3, 5] ...
 
-    for (int i = 0; i < dominoes.size(); i++) {
-      for (int j = i + 1; j < dominoes.size(); j++) {
-        if (dominoes.get(i).getRightSide() == dominoes.get(j).getLeftSide()) {
-          Domino swap = dominoes.get(i + 1);
-          dominoes.set(i + 1, dominoes.get(j));
-          dominoes.set(j, swap);
-        }
-      }
-    }
+//    for (int i = 0; i < dominoes.size(); i++) {
+//      for (int j = i + 1; j < dominoes.size(); j++) {
+//        if (dominoes.get(i).getRightSide() == dominoes.get(j).getLeftSide()) {
+//          Domino swap = dominoes.get(i + 1);
+//          dominoes.set(i + 1, dominoes.get(j));
+//          dominoes.set(j, swap);
+//        }
+//      }
+//    }
     System.out.println(dominoes);
   }
 
@@ -30,6 +31,9 @@ public class Dominoes {
     dominoes.add(new Domino(6, 7));
     dominoes.add(new Domino(2, 4));
     dominoes.add(new Domino(7, 1));
+
+    Collections.sort(dominoes);
+
     return dominoes;
   }
 }
