@@ -28,4 +28,14 @@ public class Student extends Person {
   public void skipDays(int numberOfDays) {
     this.skippedDays += numberOfDays;
   }
+
+  @Override
+  protected Student clone() {
+    Student newClone = new Student();
+    newClone.name = this.name;
+    newClone.age = this.age;
+    newClone.gender = this.gender;
+    newClone.previousOrganization = this.previousOrganization;
+    return newClone;
+  }
 }

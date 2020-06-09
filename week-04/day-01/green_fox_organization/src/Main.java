@@ -21,6 +21,9 @@ public class Main {
     Sponsor elon = new Sponsor("Elon Musk", 46, "male", "SpaceX");
     people.add(elon);
 
+    Student johnTheClone = john.clone();
+    people.add(johnTheClone);
+
     student.skipDays(3);
 
     for (int i = 0; i < 5; i++) {
@@ -39,6 +42,7 @@ public class Main {
     Cohort awesome = new Cohort("AWESOME");
     awesome.addStudent(student);
     awesome.addStudent(john);
+    awesome.addStudent(johnTheClone);
     awesome.addMentor(mentor);
     awesome.addMentor(gandhi);
     awesome.info();
