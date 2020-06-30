@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <title>Sign Up</title>
+</head>
+
+<body>
+    <main>
+        <form action="https://newsletter-ws.herokuapp.com/register" method="post">
+            <h1>Sign Up</h1>
+            <input type="text" name="name" id="name" required autofocus placeholder="Username">
+            <input type="email" name="email" id="email" placeholder="E-Mail" required
+                title="Enter a valid email address">
+            <input type="password" name="password" id="password" placeholder="Password" required
+                pattern="[0-9a-zA-z]{8,12}" title="Enter a password consisting of 8-12 digits or letters">
+            <input type="password" name="passwordConfirmation" id="passwordConfirmation" placeholder="Retype password"
+                required>
+            <input type="submit" value="Sign me up" id="signup">
+        </form>
+    </main>
+</body>
+
+<script>
+    let password = document.getElementById("password")
+    let confirm_password = document.getElementById("passwordConfirmation");
+
+    function validatePassword() {
+        if (password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
+
+</html>

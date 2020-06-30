@@ -1,0 +1,52 @@
+body {
+    background-color: lightgray;
+    font-family: 'Raleway', sans-serif;
+    color: grey;
+}
+
+main {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-content: space-around;
+}
+
+form {
+    background-color: white;
+    padding: 30px;
+    width: 400px;
+    box-shadow: 5px 5px gray;
+}
+
+h1 {
+    text-transform: uppercase;
+}
+
+input {
+    display: block;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin-bottom: 30px;
+    height: 2em;
+    width: 100%;
+    font-size: large;
+}
+
+#name:focus, #email:focus, #password:focus, #passwordConfirmation:focus {
+    border-bottom: 2px solid #16a085;
+}
+
+#signup {
+    border: none;
+    background-color: #16a085;
+    width: 150px;
+    height: 3em;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+}
+
+#signup:hover {
+    cursor: pointer;
+}
