@@ -1,0 +1,58 @@
+body {
+    background-color: lightgray;
+    font-family: 'Raleway', sans-serif;
+    color: grey;
+}
+
+main {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-content: space-around;
+}
+
+form {
+    background-color: white;
+    padding: 30px;
+    width: 400px;
+}
+
+h2 {
+    text-transform: uppercase;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-size: small;
+}
+
+input {
+    display: block;
+    margin-top: 10px;
+    height: 3em;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
+
+#name, #email {
+    width: 100%;
+}
+
+#name:focus, #email:focus {
+    border: 1px solid lightgreen;
+}
+
+#submit {
+    border: 1px solid darkgray;
+    border-radius: 50px;
+    background-color: rgb(85, 85, 85);
+    width: 100px;
+    height: 3em;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+}
+
+#submit:hover {
+    cursor: pointer;
+}
