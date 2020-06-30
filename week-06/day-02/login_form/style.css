@@ -1,0 +1,77 @@
+body {
+    background-color: lightgray;
+    font-family: 'Raleway', sans-serif;
+    color: grey;
+}
+
+main {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-content: space-around;
+}
+
+form {
+    background-color: white;
+    padding: 30px;
+    width: 400px;
+}
+
+h2 {
+    text-transform: uppercase;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-size: small;
+
+}
+
+input {
+    display: block;
+    margin-top: 10px;
+    height: 3em;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
+
+#username, #password {
+    width: 100%;
+}
+
+.eye {
+    position: relative;
+    top:0;
+    left:0;
+}
+
+#icon {
+    position: absolute;
+	right: 1.5em;
+	bottom: 1em;
+	cursor: pointer
+}
+
+a {
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    color: darkgray;
+    font-size: small;
+
+}
+
+#login {
+    border: 1px solid darkgray;
+    border-radius: 50px;
+    background-color: rgb(85, 85, 85);
+    width: 100px;
+    height: 3em;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+}
+
+#login:hover {
+    cursor: pointer;
+}
