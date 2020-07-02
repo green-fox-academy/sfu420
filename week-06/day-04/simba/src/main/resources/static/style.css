@@ -1,0 +1,29 @@
+body {
+    background-color: gray;
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+}
+
+table {
+    border: 1px solid lightgray;
+    border-collapse: collapse;
+    width: 450px;
+    background-color: white;
+    font-size: 16pt;
+}
+
+th {
+    background-color: beige;
+    text-align: center;
+}
+
+tr {
+    text-align: right;
+}
+
+tr:hover {
+    background-color: aqua;
+}
