@@ -13,7 +13,7 @@
             <th>Animal type</th>
             <tr>
                 <td th:text="${account.name}"></td>
-                <td th:text="${account.balance}"></td>
+                <td th:text="${#numbers.formatDecimal(account.balance, 0, 'POINT', 2, 'COMMA')} + ' Zebra'"></td>
                 <td th:text="${account.animalType}"></td>
             </tr>
         </table>

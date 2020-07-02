@@ -17,11 +17,11 @@ table {
 
 th {
     background-color: beige;
-    text-align: center;
 }
 
 tr {
     text-align: right;
+    border: 1px solid lightgray;
 }
 
 tr:hover {
