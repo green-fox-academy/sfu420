@@ -27,3 +27,8 @@ tr {
 tr:hover {
     background-color: aqua;
 }
+
+.king {
+    color: red;
+    font-style: italic;
+}

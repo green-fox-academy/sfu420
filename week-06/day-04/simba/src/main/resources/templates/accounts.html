@@ -12,7 +12,7 @@
         <th>Name</th>
         <th>Balance</th>
         <th>Animal type</th>
-        <tr th:each="account : ${accounts}">
+        <tr th:each="account : ${accounts}" th:attr="class=${account.isKing()}">
             <td th:text="${accountStat.count}"></td>
             <td th:text="${account.name}"></td>
             <td th:text="${#numbers.formatDecimal(account.balance, 0, 'POINT', 2, 'COMMA')} + ' Zebra'"></td>

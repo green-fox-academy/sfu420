@@ -23,4 +23,11 @@ public class BankAccount {
   public String getAnimalType() {
     return animalType;
   }
+
+  public String isKing() {
+    if(this.animalType.equals("lion")) {
+      return "king";
+    }
+    return "";
+  }
 }
