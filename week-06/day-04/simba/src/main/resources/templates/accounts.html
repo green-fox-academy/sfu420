@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css"/>
-    <title>Title</title>
+    <title>Bank Accounts</title>
 </head>
 <body>
 <main>
     <table>
+        <th>#</th>
         <th>Name</th>
         <th>Balance</th>
         <th>Animal type</th>
         <tr th:each="account : ${accounts}">
+            <td th:text="${accountStat.count}"></td>
             <td th:text="${account.name}"></td>
             <td th:text="${#numbers.formatDecimal(account.balance, 0, 'POINT', 2, 'COMMA')} + ' Zebra'"></td>
             <td th:text="${account.animalType}"></td>
