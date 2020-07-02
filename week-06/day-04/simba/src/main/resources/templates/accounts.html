@@ -19,6 +19,11 @@
             <td th:text="${account.animalType}"></td>
         </tr>
     </table>
+    <form action="/raise" method="post">
+        <label for="index">Account number: </label>
+        <input type="number" id="index" name="index" value="0"/>
+        <input type="submit" value="Update"></input>
+    </form>
 </main>
 </body>
 </html>

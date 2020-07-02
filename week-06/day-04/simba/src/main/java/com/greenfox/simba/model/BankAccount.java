@@ -25,9 +25,24 @@ public class BankAccount {
   }
 
   public String isKing() {
-    if(this.animalType.equals("lion")) {
+    if (this.animalType.equals("lion")) {
       return "king";
     }
     return "";
+  }
+
+  public Boolean isKingBoolean() {
+    if (this.animalType.equals("lion")) {
+      return true;
+    }
+    return false;
+  }
+
+  public void raiseBalance() {
+    if (this.isKingBoolean()) {
+      this.balance += 100;
+    } else {
+      this.balance += 10;
+    }
   }
 }

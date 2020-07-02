@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
@@ -23,5 +24,12 @@ public class FillingMultipleAccounts {
   public String showAccounts(Model model) {
     model.addAttribute("accounts",accounts);
     return "accounts";
+  }
+
+  @PostMapping("/raise")
+  public String raiseBalance(Integer index) {
+    if(index > 0 && index <= accounts.size())
+      accounts.get(index - 1).raiseBalance();
+    return "redirect:/accounts";
   }
 }
