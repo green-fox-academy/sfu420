@@ -2,6 +2,7 @@ package com.greenfox.webshop.controller;
 
 import com.greenfox.webshop.model.Database;
 import com.greenfox.webshop.model.ShopItem;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +19,7 @@ public class Webshop {
 
   protected Database database = new Database();
   protected String currency = "€";
+  protected double rateHUF = 354.60;
 
   @GetMapping("/webshop")
   public String listAllItems(Model model) {
@@ -109,6 +111,17 @@ public class Webshop {
   public String moreFilters(Model model) {
     model.addAttribute("products", database.getProducts());
     model.addAttribute("currency", currency);
+    return "more";
+  }
+
+  @GetMapping("/huf")
+  public String displayHUF(Model model) {
+//    List<ShopItem> pricesInHUF = new ArrayList<>();   // Was trying to clone objects, but didn't worked
+//    pricesInHUF.addAll(database.getProducts());
+//    pricesInHUF.stream().forEach(product -> product.setPrice(product.getPrice() * rateHUF));
+    model.addAttribute("products", database.getProducts());
+    model.addAttribute("currency", "HUF");
+    model.addAttribute("rate", rateHUF);
     return "more";
   }
 }

@@ -7,45 +7,45 @@
     <title>Basic WebShop</title>
 </head>
 <body>
-<header>
-    <h1><a href="/webshop" id="link">Basic WebShop</a></h1>
-    <h1><a href="/webshop" id="link">Less >></a></h1>
-</header>
-<hr>
-<nav>
-    <form action="/clothes-and-shoes" method="get">
-        <button type="submit">Clothes and Shoes</button>
-    </form>
-    <form action="/electronics" method="get">
-        <button type="submit">Electronics</button>
-    </form>
-    <form action="/beverages-and-snacks" method="get">
-        <button type="submit">Beverages and Snacks</button>
-    </form>
-    <form action="/huf" method="get">
-        <button type="submit">HUF</button>
-    </form>
-    <form action="/webshop" method="get">
-        <button type="submit">EUR</button>
-    </form>
-    <form action="/search" method="post" id="searchForm">
-        <input type="text" id="searchBox" name="searchBox" placeholder="What are you searching for?">
-        <button type="submit">Search</button>
-    </form>
-</nav>
-<main>
-    <table>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Quantity of Stock</th>
-        <tr th:each="product : ${products}">
-            <td th:text="${product.name}"></td>
-            <td th:text="${product.description}"></td>
-            <td th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 2, 'COMMA')} + ' ' + ${currency}" class="right"></td>
-            <td th:text="${product.qtyOfStock}" class="right"></td>
-        </tr>
-    </table>
-</main>
-</body>
+    <header>
+        <h1><a href="/webshop" id="link">Basic WebShop</a></h1>
+        <h1><a href="/webshop" id="link">Less >></a></h1>
+    </header>
+    <hr>
+    <nav>
+        <form action="/clothes-and-shoes" method="get">
+            <button type="submit">Clothes and Shoes</button>
+        </form>
+        <form action="/electronics" method="get">
+            <button type="submit">Electronics</button>
+        </form>
+        <form action="/beverages-and-snacks" method="get">
+            <button type="submit">Beverages and Snacks</button>
+        </form>
+        <form action="/huf" method="get">
+            <button type="submit">HUF</button>
+        </form>
+        <form action="/more-filters" method="get">
+            <button type="submit">EUR</button>
+        </form>
+        <form action="/search" method="post" id="searchForm">
+            <input type="text" id="searchBox" name="searchBox" placeholder="What are you searching for?">
+            <button type="submit">Search</button>
+        </form>
+    </nav>
+    <main>
+        <table>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity of Stock</th>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${#numbers.formatDecimal(product.price * (rate != null ? rate : 1), 0, 'POINT', 2, 'COMMA')} + ' ' + ${currency}" class="right"></td>
+                <td th:text="${product.qtyOfStock}" class="right"></td>
+            </tr>
+        </table>
+    </main>
+    </body>
 </html>

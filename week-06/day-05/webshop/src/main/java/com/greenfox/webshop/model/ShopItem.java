@@ -44,4 +44,8 @@ public class ShopItem {
       return "Beverages and Snacks";
     }
   }
+
+  public void setPrice(double price) {
+    this.price = price;
+  }
 }
