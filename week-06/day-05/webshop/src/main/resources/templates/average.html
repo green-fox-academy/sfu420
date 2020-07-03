@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/style.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <title>Average Stock</title>
+</head>
+<body>
+<header>
+    <h1><a href="/webshop" id="logo">Basic WebShop</a></h1>
+    <hr>
+</header>
+<nav>
+    <form action="/only-available" method="get">
+        <button type="submit">Only Available</button>
+    </form>
+    <form action="/cheapest-first" method="get">
+        <button type="submit">Cheapest First</button>
+    </form>
+    <form action="/contains-nike" method="get">
+        <button type="submit">Contains NIKE</button>
+    </form>
+    <form action="/average-stock" method="get">
+        <button type="submit">Average Stock</button>
+    </form>
+    <form action="/most-expensive" method="get">
+        <button type="submit">Most Expensive Available</button>
+    </form>
+    <form action="" method="post" id="searchForm">
+        <input type="text" id="searchBox" placeholder="What are you searching for?">
+        <button type="submit">Search</button>
+    </form>
+</nav>
+<main>
+    <h2 th:text="'Average stock: ' + ${average}"></h2>
+</main>
+</body>
+</html>

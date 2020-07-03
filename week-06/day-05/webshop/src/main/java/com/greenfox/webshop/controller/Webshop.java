@@ -5,6 +5,7 @@ import com.greenfox.webshop.model.ShopItem;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,15 +58,32 @@ public class Webshop {
   @GetMapping("/most-expensive")
   public String mostExpensive(Model model) {
     Optional<ShopItem> mostExpensive = database.getProducts().stream()
-            .filter(product -> product.getQtyOfStock() > 0)
-            .max(Comparator.comparing(ShopItem::getPrice));
+        .filter(product -> product.getQtyOfStock() > 0)
+        .max(Comparator.comparing(ShopItem::getPrice));
 
     ShopItem product = null;
-    if(mostExpensive.isPresent())
+    if (mostExpensive.isPresent()) {
       product = mostExpensive.get();
+    }
 
     model.addAttribute("products", product);
     model.addAttribute("currency", currency);
     return "index";
   }
+
+  @GetMapping("/average-stock")
+  public String averageStock(Model model) {
+    OptionalDouble averageStock = database.getProducts().stream()
+        .mapToDouble(ShopItem::getQtyOfStock)
+        .average();
+    double average = 0.0;
+
+    if(averageStock.isPresent()) {
+      average = averageStock.getAsDouble();
+    }
+
+    model.addAttribute("average", average);
+    return "average";
+  }
+
 }
