@@ -5,9 +5,11 @@ public class ShopItem {
   protected String description;
   protected double price;
   protected Integer qtyOfStock;
-  protected ProductCategory type;    //TODO This supposed to be not String, but a new class which is extendable by user
+  protected ProductCategory type;
+      //TODO This supposed to be not String, but a new class which is extendable by user
 
-  public ShopItem(String name, ProductCategory type, String description, double price, Integer qtyOfStock) {
+  public ShopItem(String name, ProductCategory type, String description, double price,
+                  Integer qtyOfStock) {
     this.name = name;
     this.type = type;
     this.description = description;
@@ -36,7 +38,7 @@ public class ShopItem {
   }
 
   public String getProductCategory() {
-    if(this.type == ProductCategory.CLOTHES_SHOES) {
+    if (this.type == ProductCategory.CLOTHES_SHOES) {
       return "Beverages and Snacks";
     } else if (this.type == ProductCategory.ELECTRONICS) {
       return "Electronics";

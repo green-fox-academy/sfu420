@@ -122,7 +122,7 @@ public class Webshop {
         .forEach(product -> pricesInHUF.add(product.getPrice() * rateHUF));
 
     model.addAttribute("products", database.getProducts());
-    model.addAttribute("price", pricesInHUF);
+    model.addAttribute("convertedPrice", pricesInHUF);
     model.addAttribute("currency", "HUF");
     return "more";
   }

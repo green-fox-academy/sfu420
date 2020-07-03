@@ -68,14 +68,14 @@ table {
     font-size: 16pt;
 }
 
-th{
+th {
     background-color: #16a085;
     padding: 15px;
     color: white;
 }
 
 
-tr:nth-child(even){
+tr:nth-child(even) {
     background-color: rgb(231, 231, 231);
 }
 
@@ -84,7 +84,7 @@ tr:hover {
     color: white;
 }
 
-td{
+td {
     border: 1px solid lightgray;
     padding: 15px;
 }
