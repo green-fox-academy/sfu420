@@ -41,4 +41,15 @@ public class Webshop {
     model.addAttribute("currency", currency);
     return "index";
   }
+
+  @GetMapping("/contains-nike")
+  public String containsNike(Model model) {
+    List<ShopItem> containsNike = products.getProducts().stream()
+        .filter(product -> product.getName().toLowerCase().contains("nike") || product.getDescription().toLowerCase().contains("nike"))
+        .collect(Collectors.toList());
+    model.addAttribute("products", containsNike);
+    model.addAttribute("currency", currency);
+    return "index";
+  }
+
 }
