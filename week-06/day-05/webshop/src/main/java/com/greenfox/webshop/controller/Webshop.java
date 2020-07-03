@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class Webshop {
@@ -75,10 +77,10 @@ public class Webshop {
   public String averageStock(Model model) {
     OptionalDouble averageStock = database.getProducts().stream()
         .mapToDouble(ShopItem::getQtyOfStock)
-        .average();
+        .average();   //TODO what if is null?
     double average = 0.0;
 
-    if(averageStock.isPresent()) {
+    if (averageStock.isPresent()) {
       average = averageStock.getAsDouble();
     }
 
@@ -86,4 +88,17 @@ public class Webshop {
     return "average";
   }
 
+  @PostMapping("/search")
+  public String searchProduct(@RequestParam String searchBox, Model model) {
+    String searchingFor = searchBox.toLowerCase().trim();
+
+    List<ShopItem> result = database.getProducts().stream()
+        .filter(product -> product.getName().toLowerCase().contains(searchingFor) ||
+            product.getDescription().toLowerCase().contains(searchingFor))
+        .collect(Collectors.toList());
+
+    model.addAttribute("products", result);
+    model.addAttribute("currency", currency);
+    return "index";
+  }
 }
