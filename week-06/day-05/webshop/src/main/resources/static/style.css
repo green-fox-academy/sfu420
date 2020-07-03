@@ -1,0 +1,85 @@
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+nav {
+    margin: 10px;
+}
+
+#logo {
+    cursor: pointer;
+    text-decoration: none;
+    color: darkgray;
+}
+
+form {
+    display: inline;
+}
+
+button {
+    border: none;
+    background-color: #16a085;
+    width: auto;
+    height: 3em;
+    color: white;
+    text-transform: uppercase;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+#searchForm {
+    float: right;
+    display: flex;
+    justify-content: right;
+}
+
+#searchBox {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin-right: 8px;
+    height: 2em;
+    width: 250px;
+    font-size: large;
+}
+
+table {
+    width: auto;
+    border: 1px solid lightgray;
+    border-collapse: collapse;
+    color: gray;
+    font-size: 16pt;
+}
+
+th{
+    background-color: #16a085;
+    padding: 15px;
+    color: white;
+}
+
+
+tr:nth-child(even){
+    background-color: rgb(231, 231, 231);
+}
+
+tr:hover {
+    background-color: rgb(158, 158, 158);
+    color: white;
+}
+
+td{
+    border: 1px solid lightgray;
+    padding: 15px;
+}
+
+.right {
+    text-align: right;
+}

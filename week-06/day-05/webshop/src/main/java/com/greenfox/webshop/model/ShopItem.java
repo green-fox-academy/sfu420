@@ -1,16 +1,20 @@
 package com.greenfox.webshop.model;
 
+import java.util.UUID;
+
 public class ShopItem {
+//  protected final UUID uuid;
   protected String name;
   protected String description;
   protected double price;
-  protected Integer quantityOfStock;
+  protected Integer qtyOfStock;
 
-  public ShopItem(String name, String description, double price, Integer quantityOfStock) {
+  public ShopItem(String name, String description, double price, Integer qtyOfStock) {
+//    this.uuid = UUID.randomUUID();
     this.name = name;
     this.description = description;
     this.price = price;
-    this.quantityOfStock = quantityOfStock;
+    this.qtyOfStock = qtyOfStock;
   }
 
   public String getName() {
@@ -25,7 +29,7 @@ public class ShopItem {
     return price;
   }
 
-  public Integer getQuantityOfStock() {
-    return quantityOfStock;
+  public Integer getQtyOfStock() {
+    return qtyOfStock;
   }
 }
