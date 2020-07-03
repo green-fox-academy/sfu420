@@ -42,7 +42,7 @@
             <tr th:each="product : ${products}">
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.description}"></td>
-                <td th:text="${#numbers.formatDecimal(product.price * (rate != null ? rate : 1), 0, 'POINT', 2, 'COMMA')} + ' ' + ${currency}" class="right"></td>
+                <td th:text="${#numbers.formatDecimal((price != null ? price : product.price), 0, 'POINT', 2, 'COMMA')} + ' ' + ${currency}" class="right"></td>
                 <td th:text="${product.qtyOfStock}" class="right"></td>
             </tr>
         </table>

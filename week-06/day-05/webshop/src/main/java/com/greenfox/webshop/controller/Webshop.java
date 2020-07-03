@@ -116,12 +116,14 @@ public class Webshop {
 
   @GetMapping("/huf")
   public String displayHUF(Model model) {
-//    List<ShopItem> pricesInHUF = new ArrayList<>();   // Was trying to clone objects, but didn't worked
-//    pricesInHUF.addAll(database.getProducts());
-//    pricesInHUF.stream().forEach(product -> product.setPrice(product.getPrice() * rateHUF));
+    List<Double> pricesInHUF = new ArrayList<>();
+
+    database.getProducts()
+        .forEach(product -> pricesInHUF.add(product.getPrice() * rateHUF));
+
     model.addAttribute("products", database.getProducts());
+    model.addAttribute("price", pricesInHUF);
     model.addAttribute("currency", "HUF");
-    model.addAttribute("rate", rateHUF);
     return "more";
   }
 }
