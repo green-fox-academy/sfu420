@@ -31,6 +31,7 @@ public class Webshop {
     List<ShopItem> onlyAvailable = database.getProducts().stream()
         .filter(product -> product.getQtyOfStock() > 0)
         .collect(Collectors.toList());
+
     model.addAttribute("products", onlyAvailable);
     model.addAttribute("currency", currency);
     return "index";
@@ -41,6 +42,7 @@ public class Webshop {
     List<ShopItem> cheapestFirst = database.getProducts().stream()
         .sorted(Comparator.comparing(ShopItem::getPrice))
         .collect(Collectors.toList());
+
     model.addAttribute("products", cheapestFirst);
     model.addAttribute("currency", currency);
     return "index";
@@ -52,6 +54,7 @@ public class Webshop {
         .filter(product -> product.getName().toLowerCase().contains("nike") ||
             product.getDescription().toLowerCase().contains("nike"))
         .collect(Collectors.toList());
+
     model.addAttribute("products", containsNike);
     model.addAttribute("currency", currency);
     return "index";
@@ -100,5 +103,12 @@ public class Webshop {
     model.addAttribute("products", result);
     model.addAttribute("currency", currency);
     return "index";
+  }
+
+  @GetMapping("/more-filters")
+  public String moreFilters(Model model) {
+    model.addAttribute("products", database.getProducts());
+    model.addAttribute("currency", currency);
+    return "more";
   }
 }

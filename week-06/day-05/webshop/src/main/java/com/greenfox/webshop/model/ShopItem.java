@@ -1,17 +1,15 @@
 package com.greenfox.webshop.model;
 
-import java.util.UUID;
-
 public class ShopItem {
-//  protected final UUID uuid;
   protected String name;
   protected String description;
   protected double price;
   protected Integer qtyOfStock;
+  protected ProductCategory type;    //TODO This supposed to be not String, but a new class which is extendable by user
 
-  public ShopItem(String name, String description, double price, Integer qtyOfStock) {
-//    this.uuid = UUID.randomUUID();
+  public ShopItem(String name, ProductCategory type, String description, double price, Integer qtyOfStock) {
     this.name = name;
+    this.type = type;
     this.description = description;
     this.price = price;
     this.qtyOfStock = qtyOfStock;
@@ -31,5 +29,19 @@ public class ShopItem {
 
   public Integer getQtyOfStock() {
     return qtyOfStock;
+  }
+
+  public ProductCategory getType() {
+    return type;
+  }
+
+  public String getProductCategory() {
+    if(this.type == ProductCategory.CLOTHES_SHOES) {
+      return "Beverages and Snacks";
+    } else if (this.type == ProductCategory.ELECTRONICS) {
+      return "Electronics";
+    } else {
+      return "Beverages and Snacks";
+    }
   }
 }
