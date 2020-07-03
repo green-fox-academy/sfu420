@@ -1,6 +1,7 @@
 package com.greenfox.webshop.controller;
 
 import com.greenfox.webshop.model.Database;
+import com.greenfox.webshop.model.ProductCategory;
 import com.greenfox.webshop.model.ShopItem;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -110,6 +112,36 @@ public class Webshop {
   @GetMapping("/more-filters")
   public String moreFilters(Model model) {
     model.addAttribute("products", database.getProducts());
+    model.addAttribute("currency", currency);
+    return "more";
+  }
+
+  @GetMapping("/filter-by-type/{type}")
+  public String filterByType(@PathVariable String type, Model model) {
+    ProductCategory filter = null;
+    List<ShopItem> filteredByType;
+    switch (type) {
+      case "clothes-and-shoes":
+        filter = ProductCategory.CLOTHES_SHOES;
+        break;
+      case "electronics":
+        filter = ProductCategory.ELECTRONICS;
+        break;
+      case "beverages-and-snacks":
+        filter = ProductCategory.BEVERAGES_SNACKS;
+        break;
+    }
+
+    if (filter == null) {
+      filteredByType = database.getProducts();    // It provide the full list, if user try manipulate the URL
+    } else {
+      ProductCategory finalFilter = filter;
+      filteredByType = database.getProducts().stream()
+          .filter(product -> product.getType() == finalFilter)
+          .collect(Collectors.toList());
+    }
+
+    model.addAttribute("products", filteredByType);
     model.addAttribute("currency", currency);
     return "more";
   }

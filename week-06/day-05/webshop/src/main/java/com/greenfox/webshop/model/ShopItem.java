@@ -39,7 +39,7 @@ public class ShopItem {
 
   public String getProductCategory() {
     if (this.type == ProductCategory.CLOTHES_SHOES) {
-      return "Beverages and Snacks";
+      return "Clothes and Shoes";
     } else if (this.type == ProductCategory.ELECTRONICS) {
       return "Electronics";
     } else {

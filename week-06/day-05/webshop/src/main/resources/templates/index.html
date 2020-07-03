@@ -36,11 +36,13 @@
     <main>
         <table>
             <th>Name</th>
+            <th>Category</th>
             <th>Description</th>
             <th>Price</th>
             <th>Quantity of Stock</th>
             <tr th:each="product : ${products}">
                 <td th:text="${product.name}"></td>
+                <td th:text="${product.getProductCategory()}"></td>
                 <td th:text="${product.description}"></td>
                 <td th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 2, 'COMMA')} + ' ' + ${currency}" class="right"></td>
                 <td th:text="${product.qtyOfStock}" class="right"></td>

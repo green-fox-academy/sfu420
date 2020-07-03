@@ -13,13 +13,13 @@
     </header>
     <hr>
     <nav>
-        <form action="/clothes-and-shoes" method="get">
+        <form action="/filter-by-type/clothes-and-shoes" method="get">
             <button type="submit">Clothes and Shoes</button>
         </form>
-        <form action="/electronics" method="get">
+        <form action="/filter-by-type/electronics" method="get">
             <button type="submit">Electronics</button>
         </form>
-        <form action="/beverages-and-snacks" method="get">
+        <form action="/filter-by-type/beverages-and-snacks" method="get">
             <button type="submit">Beverages and Snacks</button>
         </form>
         <form action="/huf" method="get">
@@ -36,11 +36,13 @@
     <main>
         <table>
             <th>Name</th>
+            <th>Category</th>
             <th>Description</th>
             <th>Price</th>
             <th>Quantity of Stock</th>
             <tr th:each="product : ${products}">
                 <td th:text="${product.name}"></td>
+                <td th:text="${product.getProductCategory()}"></td>
                 <td th:text="${product.description}"></td>
                 <td th:text="${#numbers.formatDecimal((convertedPrice != null ? convertedPrice : product.price), 0, 'POINT', 2, 'COMMA')} + ' ' + ${currency}" class="right"></td>
                 <td th:text="${product.qtyOfStock}" class="right"></td>
