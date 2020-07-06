@@ -6,7 +6,7 @@ public class ShopItem {
   protected double price;
   protected Integer qtyOfStock;
   protected ProductCategory type;
-      //TODO This supposed to be not String, but a new class which is extendable by user
+  //TODO This supposed to be not String, but a new class which is extendable by user
 
   public ShopItem(String name, ProductCategory type, String description, double price,
                   Integer qtyOfStock) {
