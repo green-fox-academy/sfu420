@@ -40,4 +40,15 @@ public class Endpoints {
     return "mailchecker";
   }
 
+  @GetMapping("/useful/encode")
+  public String encode(@RequestParam(name="text") String text, @RequestParam(name="number") int number, Model model) {
+    model.addAttribute("text", utilities.caesar(text, number));
+    return "caesar";
+  }
+
+  @GetMapping("/useful/decode")
+  public String decode(@RequestParam(name="text") String text, @RequestParam(name="number") int number, Model model) {
+    model.addAttribute("text", utilities.caesar(text, -number));
+    return "caesar";
+  }
 }
