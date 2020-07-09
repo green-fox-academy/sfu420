@@ -9,11 +9,11 @@
 
     <form th:action="@{/nutritionStore(name=${name})}" method="post">
         <label for="food">Food: </label>
-        <select id="food" th:name="newFood">
+        <select id="food" name="newFood">
             <option th:each="food : ${foods}" th:value="${food}" th:text="${food}" th:selected="${food} == ${currentFood}"></option>
         </select>
         <label for="drink">Drink: </label>
-        <select id="drink" th:name="newDrink">
+        <select id="drink" name="newDrink">
             <option th:each="drink : ${drinks}" th:value="${drink}" th:text="${drink}" th:selected="${drink} == ${currentDrink}"></option>
         </select>
         <button type="submit">Select</button>
