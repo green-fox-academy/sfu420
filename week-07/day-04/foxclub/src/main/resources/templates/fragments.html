@@ -1,4 +1,3 @@
-
 <head th:fragment="head (title)">
     <meta charset="UTF-8">
     <title th:text="${title}"></title>
@@ -6,5 +5,15 @@
 </head>
 
 <nav th:fragment="nav">
-    <a href="/"><button name="information">Information</button></a>
+    <a th:href="@{'/?name=' + ${name}}"><button name="information">Information</button></a>
 </nav>
+
+<div th:fragment="noTricks">
+    <p>You know no tricks, yet. Go and learn some.</p>
+</div>
+
+<div th:fragment="listOfTricks">
+    <ul th:each="trick : ${tricks}">
+        <li th:text="${trick.toString()}"></li>
+    </ul>
+</div>

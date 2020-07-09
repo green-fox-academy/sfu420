@@ -9,11 +9,14 @@
 
     <main>
         <img th:src="@{img/greenfox.png}">
-        <p th:text="'This is ' + ${name}"></p>
+        <p th:text="${description}"></p>
         <h1>Known tricks</h1>
-        <ul>
-            <li>write HTML</li>
-        </ul>
+        <th:block th:if="${tricks.isEmpty()}">
+            <div th:insert="fragments :: noTricks"></div>
+        </th:block>
+        <th:block th:unless="${tricks.isEmpty()}">
+            <div th:insert="fragments :: listOfTricks"></div>
+        </th:block>
     </main>
 </body>
 </html>
