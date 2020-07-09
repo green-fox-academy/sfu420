@@ -20,6 +20,8 @@ public class MainController {
       new Fox("Sanyi", Arrays.asList(Trick.WRITE_HTML, Trick.STYLE_WITH_CSS), "Pizza", "Beer"),
       new Fox("Mr. Green", Arrays.asList(Trick.WRITE_HTML, Trick.CREATE_FORMS), "Pasta", "Wine")
   ));
+  List<String> foods = new ArrayList<>(Arrays.asList("Burger", "Pizza", "Pasta", "Bread", "Cheese"));
+  List<String> drinks = new ArrayList<>(Arrays.asList("Cola", "Hell", "Water", "Beer", "Coffee"));
 
   @GetMapping("/")
   public String information(@RequestParam Optional<String> name, Model model) {
@@ -57,5 +59,32 @@ public class MainController {
 
   public Optional<Fox> findFox(String name) {
     return foxes.stream().filter(fox -> fox.getName().equals(name)).findFirst();
+  }
+
+  @GetMapping("/nutritionStore")
+  public String getNutrition(@RequestParam String name, Model model) {
+    if (findFox(name).isPresent()) {
+      Fox currentFox = findFox(name).get();
+      model.addAttribute("name", currentFox.getName());   // Why need this????
+      model.addAttribute("foods", foods);
+      model.addAttribute("currentFood", currentFox.getFood());
+      model.addAttribute("drinks", drinks);
+      model.addAttribute("currentDrink", currentFox.getDrink());
+      return "nutrition";
+    }
+    return "redirect:/login";
+  }
+
+  @PostMapping("/nutritionStore")
+  public String changeNutrition(@RequestParam String name,
+                                @RequestParam String newFood,
+                                @RequestParam String newDrink) {
+    if (findFox(name).isPresent()) {
+      Fox currentFox = findFox(name).get();
+      currentFox.setFood(newFood);
+      currentFox.setDrink(newDrink);
+      return "redirect:/?name=" + name;
+    }
+    return "redirect:/login";
   }
 }

@@ -6,6 +6,7 @@
 
 <nav th:fragment="nav">
     <a th:href="@{'/?name=' + ${name}}"><button name="information">Information</button></a>
+    <a th:href="@{'/nutritionStore?name=' + ${name}}"><button name="nutrition">Nutrition Store</button></a>
 </nav>
 
 <div th:fragment="noTricks">
