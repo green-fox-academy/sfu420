@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import lombok.Data;
 
 public @Data class Fox {
-  protected String name;
-  protected ArrayList<Trick> tricks;
-  protected String food;
-  protected String drink;
+  private String name;
+  private ArrayList<Trick> tricks;
+  private String food;
+  private String drink;
 
   public Fox(String name, ArrayList<Trick> tricks, String food, String drink) {
     this.name = name;

@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class MainController {
 
-  List<Fox> foxes = new ArrayList<>(Arrays.asList(
+  private List<Fox> foxes = new ArrayList<>(Arrays.asList(
       new Fox("Johny", new ArrayList<>(Arrays.asList(Trick.WRITE_HTML)), "Burger", "Hell"),
       new Fox("Sanyi", new ArrayList<>(Arrays.asList(Trick.WRITE_HTML, Trick.STYLE_WITH_CSS)), "Pizza", "Beer"),
       new Fox("Mr. Green", new ArrayList<>(Arrays.asList(Trick.WRITE_HTML, Trick.CREATE_FORMS)), "Pasta", "Wine")
   ));
-  List<String> foods = new ArrayList<>(Arrays.asList("Burger", "Pizza", "Pasta", "Bread", "Cheese"));
-  List<String> drinks = new ArrayList<>(Arrays.asList("Cola", "Hell", "Water", "Beer", "Coffee"));
+  private List<String> foods = new ArrayList<>(Arrays.asList("Burger", "Pizza", "Pasta", "Bread", "Cheese", "Snack"));
+  private List<String> drinks = new ArrayList<>(Arrays.asList("Cola", "Hell", "Water", "Beer", "Coffee"));
 
   // Information Page//
   @GetMapping("/")
@@ -113,7 +113,6 @@ public class MainController {
   public String learnTrick(@RequestParam String name, @RequestParam Trick trick) {
     if (findFox(name).isPresent()) {
       Fox currentFox = findFox(name).get();
-      System.out.println(trick);
       currentFox.addTrick(trick);
       return "redirect:/?name=" + name;
     }
