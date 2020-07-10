@@ -9,7 +9,9 @@
 
     <p>Please provide a name, so you can associate it to your pet!</p>
 
-    <p th:text="${error} != null ? ${error} : ''" style="color: red"></p>
+    <th:block th:if="${error} != null">
+        <p th:text="${error}" style="color: red"></p>
+    </th:block>
 
     <form action="/login" method="post">
         <label for="name">Name: </label>

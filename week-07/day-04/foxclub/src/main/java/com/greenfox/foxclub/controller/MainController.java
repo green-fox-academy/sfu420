@@ -78,7 +78,7 @@ public class MainController {
     if (findFox(name).isPresent()) {
       Fox currentFox = findFox(name).get();
 
-      model.addAttribute("name", currentFox.getName());   // Why need this????
+      model.addAttribute("name", currentFox.getName());
       model.addAttribute("foods", foods);
       model.addAttribute("currentFood", currentFox.getFood());
       model.addAttribute("drinks", drinks);
