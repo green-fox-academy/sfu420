@@ -23,7 +23,7 @@ import org.springframework.web.client.RestTemplate;
 public class Webshop {
 
   protected Database database = new Database();
-  protected String currency = "€";
+  protected String currency = "EUR";
   protected double HUF = 353.60;
   protected String exchangeURL = "https://api.exchangeratesapi.io/latest?symbols=HUF";
   JSONObject ratesJSON;
@@ -49,6 +49,7 @@ public class Webshop {
     RestTemplate restTemplate = new RestTemplate();
     Rates rates = restTemplate.getForObject("https://api.exchangeratesapi.io/latest", Rates.class);
     ratesJSON = new JSONObject(rates);
+    ratesJSON.getJSONObject("rates").put("EUR", 1.0);   // Add base currency to the list
 
 //    Object rates3 = restTemplate
 //        .getForObject("https://api.exchangeratesapi.io/latest?symbols=HUF", Object.class);
@@ -244,7 +245,7 @@ public class Webshop {
 
     model.addAttribute("products", database.getProducts());
     model.addAttribute("convertedPrice", pricesInHUF);
-    model.addAttribute("currency", "Ft");
+    model.addAttribute("currency", "HUF");
     model.addAttribute("currencies", ratesJSON.getJSONObject("rates").keys());
     return "more";
   }

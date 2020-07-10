@@ -11,8 +11,8 @@
     <header>
         <h1><a href="/webshop" id="link"><i class="fab fa-shopify"></i> Basic WebShop</a></h1>
         <form action="/convert" method="post">
-                <select th.field="${currencies}" name="convertTo">
-                    <option th:each="i : ${currencies}" th:value="${i}" th:text="${i}"></option>
+                <select name="convertTo">
+                    <option th:each="i : ${currencies}" th:value="${i}" th:text="${i}" th:selected="${currency} == ${i}"</option>
                 </select>
             <button type="submit">Convert</button>
         </form>
@@ -63,11 +63,11 @@
             <th>Description</th>
             <th>Price</th>
             <th>Quantity of Stock</th>
-            <tr th:each="product : ${products}">
+            <tr th:each="product, stats : ${products}">
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.getProductCategory()}"></td>
                 <td th:text="${product.description}"></td>
-                <td th:text="${#numbers.formatDecimal((convertedPrice != null ? convertedPrice : product.price), 0, 'POINT', 2, 'COMMA')} + ' ' + ${currency}" class="right"></td>
+                <td th:text="${#numbers.formatDecimal((convertedPrice != null ? convertedPrice.get(stats.index) : product.price), 0, 'POINT', 2, 'COMMA')} + ' ' + ${currency}" class="right"></td>
                 <td th:text="${product.qtyOfStock}" class="right"></td>
             </tr>
         </table>

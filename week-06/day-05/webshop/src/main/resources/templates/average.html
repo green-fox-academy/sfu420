@@ -11,8 +11,8 @@
     <header>
         <h1><a href="/webshop" id="link"><i class="fab fa-shopify"></i> Basic WebShop</a></h1>
         <form action="/convert" method="post">
-            <select th.field="${currencies}" name="convertTo">
-                <option th:each="i : ${currencies}" th:value="${i}" th:text="${i}"></option>
+            <select name="convertTo">
+                <option th:each="i : ${currencies}" th:value="${i}" th:text="${i}" th:selected="${currency} == ${i}"></option>
             </select>
             <button type="submit">Convert</button>
         </form>
