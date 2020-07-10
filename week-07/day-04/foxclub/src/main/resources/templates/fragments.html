@@ -1,4 +1,4 @@
-<head th:fragment="head (title)">
+<head th:fragment="head(title)">
     <meta charset="UTF-8">
     <title th:text="${title}"></title>
     <link rel="stylesheet" href="styles.css">
@@ -7,14 +7,5 @@
 <nav th:fragment="nav">
     <a th:href="@{'/?name=' + ${name}}"><button name="information">Information</button></a>
     <a th:href="@{'/nutritionStore?name=' + ${name}}"><button name="nutrition">Nutrition Store</button></a>
+    <a th:href="@{'/trickCenter?name=' + ${name}}"><button name="tricks">Trick Center</button></a>
 </nav>
-
-<div th:fragment="noTricks">
-    <p>You know no tricks, yet. Go and learn some.</p>
-</div>
-
-<div th:fragment="listOfTricks">
-    <ul th:each="trick : ${tricks}">
-        <li th:text="${trick.toString()}"></li>
-    </ul>
-</div>

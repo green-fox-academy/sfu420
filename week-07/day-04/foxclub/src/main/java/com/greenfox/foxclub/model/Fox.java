@@ -1,19 +1,23 @@
 package com.greenfox.foxclub.model;
 
-import java.util.List;
+import java.util.ArrayList;
 import lombok.Data;
 
 public @Data class Fox {
   protected String name;
-  protected List<Trick> tricks;
+  protected ArrayList<Trick> tricks;
   protected String food;
   protected String drink;
 
-  public Fox(String name, List<Trick> tricks, String food, String drink) {
+  public Fox(String name, ArrayList<Trick> tricks, String food, String drink) {
     this.name = name;
     this.tricks = tricks;
     this.food = food;
     this.drink = drink;
+  }
+
+  public void addTrick(Trick trick) {
+    this.tricks.add(trick);
   }
 
   @Override

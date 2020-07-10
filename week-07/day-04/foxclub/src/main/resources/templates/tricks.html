@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="fragments :: head('Trick Center')"></head>
+
+<body>
+
+    <nav th:insert="fragments :: nav"></nav>
+
+    <th:block th:if="${tricks.size()} == 0">
+        <p>You know all the tricks. Great job!</p>
+    </th:block>
+
+    <th:block th:unless="${tricks.size()} == 0">
+    <form th:action="@{'/trickCenter?name=' + ${name}}" method="post">
+        <label for="trick">Tricks: </label>
+        <select name="trick" id="trick">
+            <option th:each="trick : ${tricks}" th:value="${trick}" th:text="${trick}"></option>
+        </select>
+        <button type="submit">Learn</button>
+    </form>
+    </th:block>
+
+</body>
+</html>

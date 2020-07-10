@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert="fragments :: head(${'FoxClub'})"></head>
+<head th:insert="fragments :: head('FoxClub')"></head>
 
 <body>
 
@@ -11,11 +11,15 @@
         <img th:src="@{img/greenfox.png}">
         <p th:text="${description}"></p>
         <h1>Known tricks</h1>
+
         <th:block th:if="${tricks.isEmpty()}">
-            <div th:insert="fragments :: noTricks"></div>
+            <p>You know no tricks, yet. Go and learn some.</p>
         </th:block>
+
         <th:block th:unless="${tricks.isEmpty()}">
-            <div th:insert="fragments :: listOfTricks"></div>
+            <ul th:each="trick : ${tricks}">
+                <li th:text="${trick.toString()}"></li>
+            </ul>
         </th:block>
     </main>
 
