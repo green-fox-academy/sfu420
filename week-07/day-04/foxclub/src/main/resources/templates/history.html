@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="Fragments :: head('Action History')"></head>
+
+<body>
+    <th:block th:insert="Fragments :: nav"></th:block>
+
+    <th:block th:if="${history.size()} == 0">
+        <p>There is no action has been made yet.</p>
+    </th:block>
+
+    <th:block th:unless="${history.size()} == 0">
+        <ul th:each="logitem : ${history}" >
+            <li th:text="${logitem.getTimestamp()} + ' ' + ${logitem.getDescription()}"></li>
+        </ul>
+    </th:block>
+</body>
+</html>

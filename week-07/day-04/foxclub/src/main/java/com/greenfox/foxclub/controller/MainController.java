@@ -2,6 +2,7 @@ package com.greenfox.foxclub.controller;
 
 import com.greenfox.foxclub.model.Fox;
 import com.greenfox.foxclub.model.Trick;
+import com.greenfox.foxclub.service.LoggingService;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,13 +17,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class MainController {
 
+  private LoggingService logging;
+
   private List<Fox> foxes = new ArrayList<>(Arrays.asList(
       new Fox("Johny", new ArrayList<>(Arrays.asList(Trick.WRITE_HTML)), "Burger", "Hell"),
       new Fox("Sanyi", new ArrayList<>(Arrays.asList(Trick.WRITE_HTML, Trick.STYLE_WITH_CSS)), "Pizza", "Beer"),
       new Fox("Mr. Green", new ArrayList<>(Arrays.asList(Trick.WRITE_HTML, Trick.CREATE_FORMS)), "Pasta", "Wine")
   ));
-  private List<String> foods = new ArrayList<>(Arrays.asList("Burger", "Pizza", "Pasta", "Bread", "Cheese", "Snack"));
-  private List<String> drinks = new ArrayList<>(Arrays.asList("Cola", "Hell", "Water", "Beer", "Coffee"));
+  private List<String> foods =
+      new ArrayList<>(Arrays.asList("Burger", "Pizza", "Pasta", "Bread", "Cheese", "Snack"));
+  private List<String> drinks =
+      new ArrayList<>(Arrays.asList("Cola", "Hell", "Water", "Beer", "Coffee"));
+
+  public MainController(LoggingService logging) {
+    this.logging = logging;
+  }
 
   // Information Page//
   @GetMapping("/")
@@ -30,9 +39,11 @@ public class MainController {
     if (name.isPresent() && !name.get().isEmpty()) {
       if (findFox(name.get()).isPresent()) {
         Fox currentFox = findFox(name.get()).get();
+
         model.addAttribute("name", currentFox.getName());
         model.addAttribute("description", currentFox.toString());
         model.addAttribute("tricks", currentFox.getTricks());
+
       } else {
         return "redirect:/login?error=notfound";
       }
@@ -56,12 +67,9 @@ public class MainController {
   public String getName(@RequestParam String name) {
     if (!findFox(name).isPresent()) {
       foxes.add(new Fox(name, new ArrayList<>(), "Snack", "Cola"));
+      logging.addNewItem("A new fox has been added with name: " + name);
     }
     return "redirect:/?name=" + name;
-  }
-
-  public Optional<Fox> findFox(String name) {
-    return foxes.stream().filter(fox -> fox.getName().equals(name)).findFirst();
   }
 
   // Nutrition Store //
@@ -69,11 +77,13 @@ public class MainController {
   public String getNutrition(@RequestParam String name, Model model) {
     if (findFox(name).isPresent()) {
       Fox currentFox = findFox(name).get();
+
       model.addAttribute("name", currentFox.getName());   // Why need this????
       model.addAttribute("foods", foods);
       model.addAttribute("currentFood", currentFox.getFood());
       model.addAttribute("drinks", drinks);
       model.addAttribute("currentDrink", currentFox.getDrink());
+
       return "nutrition";
     }
     return "redirect:/login";
@@ -85,8 +95,19 @@ public class MainController {
                                 @RequestParam String newDrink) {
     if (findFox(name).isPresent()) {
       Fox currentFox = findFox(name).get();
-      currentFox.setFood(newFood);
-      currentFox.setDrink(newDrink);
+      String oldFood = currentFox.getFood();
+      String oldDrink = currentFox.getDrink();
+
+      if (!oldFood.equals(newFood)) {
+        currentFox.setFood(newFood);
+        logging.addNewItem("Food has been changed from " + oldFood + " to " + newFood);
+      }
+
+      if (!oldDrink.equals(newDrink)) {
+        currentFox.setDrink(newDrink);
+        logging.addNewItem("Drink has been changed from " + oldDrink + " to " + newDrink);
+      }
+
       return "redirect:/?name=" + name;
     }
     return "redirect:/login";
@@ -104,6 +125,7 @@ public class MainController {
 
       model.addAttribute("name", currentFox.getName());
       model.addAttribute("tricks", learnableTricks);
+
       return "tricks";
     }
     return "redirect:/login";
@@ -113,9 +135,28 @@ public class MainController {
   public String learnTrick(@RequestParam String name, @RequestParam Trick trick) {
     if (findFox(name).isPresent()) {
       Fox currentFox = findFox(name).get();
+
       currentFox.addTrick(trick);
+      logging.addNewItem("Learned to: " + trick);
+
       return "redirect:/?name=" + name;
     }
     return "redirect:/login";
+  }
+
+  // Action History //
+  @GetMapping("/actionHistory")
+  public String listHistory(@RequestParam String name, Model model) {
+    if (findFox(name).isPresent()) {
+      model.addAttribute("name", name);
+      model.addAttribute("history", logging.getHistory());
+      return "history";
+    }
+    return "redirect:/login";
+  }
+
+  // Helper methods //
+  public Optional<Fox> findFox(String name) {
+    return foxes.stream().filter(fox -> fox.getName().equals(name)).findFirst();
   }
 }
