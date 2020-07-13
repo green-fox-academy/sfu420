@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo CRUD App</title>
+</head>
+<body>
+    <h1>Todos for today:</h1>
+    <table>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Done</th>
+        <th>Urgent</th>
+        <tr th:each="item : ${todos}">
+            <td th:text="${item.getId()}"></td>
+            <td th:text="${item.getTitle()}"></td>
+            <td th:text="${item.isDone()}"></td>
+            <td th:text="${item.isUrgent()}"></td>
+        </tr>
+    </table>
+</body>
+</html>
