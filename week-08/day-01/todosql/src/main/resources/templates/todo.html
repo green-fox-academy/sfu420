@@ -5,7 +5,9 @@
     <title>Todo CRUD App</title>
 </head>
 <body>
+
     <h1>Todos for today:</h1>
+    <a href="/todo/add">Add new todo</a>
     <table>
         <th>ID</th>
         <th>Title</th>
@@ -16,7 +18,10 @@
             <td th:text="${item.getTitle()}"></td>
             <td th:text="${item.isDone()}"></td>
             <td th:text="${item.isUrgent()}"></td>
+            <td><a th:href="@{/todo/{id}/delete(id=${item.getId()})}">delete</a></td>
+            <td><a th:href="@{/todo/{id}/edit(id=${item.getId()})}">edit</a></td>
         </tr>
     </table>
+
 </body>
 </html>
