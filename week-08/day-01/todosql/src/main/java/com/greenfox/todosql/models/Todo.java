@@ -9,9 +9,11 @@ import lombok.Data;
 @Entity
 @Data
 public class Todo {
+
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
   private String title;
   private boolean urgent = false;
   private boolean done = false;

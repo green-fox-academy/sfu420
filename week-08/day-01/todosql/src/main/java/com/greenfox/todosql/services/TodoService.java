@@ -17,7 +17,6 @@ public class TodoService {
     this.todoRepository = todoRepository;
   }
 
-
   public List<Todo> getAll() {
     return (List<Todo>) todoRepository.findAll();
   }
@@ -51,5 +50,9 @@ public class TodoService {
       return todoRepository.save(res);
     }
     return res;
+  }
+
+  public List<Todo> searchFor(String content) {
+    return todoRepository.findAllByTitleContains(content);
   }
 }

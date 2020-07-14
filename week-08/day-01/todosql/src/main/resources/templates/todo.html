@@ -7,7 +7,12 @@
 <body>
 
     <h1>Todos for today:</h1>
+    <form action="/todo/search" method="post">
+        <input type="text" id="searchBox" name="searchBox" placeholder="Search for...">
+        <button type="submit">Search</button>
+    </form>
     <a href="/todo/add">Add new todo</a>
+    <a href="/todo/assignee/">List of Assignees</a>
     <table>
         <th>ID</th>
         <th>Title</th>
