@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/signup.css">
+    <link rel="stylesheet" href="./css/login.css">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
     <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
-    <title>Title</title>
+    <title>Reddit - Login</title>
 </head>
 
 <body>
     <main>
         <form action="/login" method="post">
+            <img src="./img/reddit_logo.png" alt="A small astronaut cartoon" width="60px">
             <h1>Account Login</h1>
             <input type="email" name="email" id="email" placeholder="E-mail" required autofocus>
             <input type="password" name="password" id="password" placeholder="Password" required pattern="[0-9a-zA-z]{8,24}"
@@ -21,13 +22,13 @@
             </div>
             <input type="submit" value="Login" id="login">
             <button type="button" id="orSignup"><a href="/signup">Sign up</a></button>
-            <br/>
             <div th:if="${param.error}" class="alert">
                 Invalid email or password.
             </div>
             <div th:if="${param.logout}" class="alert">
                 You have been successfully logged out.
             </div>
+            <br/>
         </form>
     </main>
 </body>
