@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BADdit</title>
+</head>
+<body>
+
+    <header>
+        <div th:if="${successMessage} != null" th:text="${successMessage}"></div>
+        <img src="" alt="A reddit logo with background picturing the universe">
+    </header>
+
+    <main>
+All OK!
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </main>
+
+    <aside>
+
+    </aside>
+
+</body>
+</html>

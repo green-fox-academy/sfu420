@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/signup.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <title>Sign Up</title>
+</head>
+
+<body>
+    <main>
+        <form action="/signup" th:object="${user}" method="post">
+            <h1>Sign Up</h1>
+            <input type="text" name="username" id="username" th:value="*{username}" required autofocus placeholder="Username">
+            <span class="alert" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+            <input type="email" name="email" id="email" th:value="*{email}" placeholder="E-Mail" required
+                   title="Enter a valid email address">
+            <span class="alert" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            <input type="password" name="password" id="password" th:value="*{password}" placeholder="Password" required
+                   pattern="[0-9a-zA-z]{8,24}" title="Enter a password consisting of 8-24 digits or letters">
+            <div class="eye">
+                <i id="icon" class="fa fa-eye-slash fa-lg"></i>
+            </div>
+            <input type="password" name="passwordConfirmation" id="passwordConfirmation" th:value="*{password}" placeholder="Retype password"
+                   required>
+            <input type="submit" value="Sign me up" id="signup">
+            <div th:if="${param.error}">
+                Invalid email and password.
+            </div>
+        </form>
+    </main>
+</body>
+
+<script>
+    let password = document.getElementById("password")
+    let confirm_password = document.getElementById("passwordConfirmation");
+
+    function validatePassword() {
+        if (password.value !== confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+
+    let icon = document.getElementById('icon');
+    let password_field = document.getElementById('password')
+    icon.onclick = function () {
+        if (password_field.type === "password") {
+            password_field.type = "text";
+            confirm_password.type = "text";
+            icon.className = "fa fa-eye fa-lg"
+        } else {
+            password_field.type = "password";
+            confirm_password.type = "password";
+            icon.className = "fa fa-eye-slash fa-lg"
+        }
+    }
+</script>
+
+</html>
