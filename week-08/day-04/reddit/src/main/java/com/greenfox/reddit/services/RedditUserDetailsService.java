@@ -79,10 +79,8 @@ public class RedditUserDetailsService implements UserDetailsService {
     String email;
     if (principal instanceof UserDetails) {
       email = ((UserDetails)principal).getUsername();
-      System.out.println(email);
     } else {
       email = principal.toString();
-      System.out.println("Not instanceOf: " + email);
     }
     return findUserByEmail(email);
   }

@@ -5,7 +5,6 @@ import com.greenfox.reddit.services.RedditUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +13,17 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AuthController {
 
-  @Autowired
   private RedditUserDetailsService userService;
+
+  @Autowired
+  public AuthController(RedditUserDetailsService userService) {
+    this.userService = userService;
+  }
+
+  @GetMapping("/")
+  public String redirect() {
+    return "redirect:/r/greenfox";
+  }
 
   @GetMapping("/login")
   public ModelAndView login() {

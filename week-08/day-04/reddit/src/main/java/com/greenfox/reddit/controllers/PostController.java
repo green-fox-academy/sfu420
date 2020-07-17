@@ -28,6 +28,11 @@ public class PostController {
     this.userService = userService;
   }
 
+  @GetMapping("/")
+  public String redirect() {
+    return "redirect:/r/greenfox";
+  }
+
   @GetMapping({"/greenfox", "/greenfox/{newThread}"})
   public String listThreads(@RequestParam(required = false) boolean newThread,
                             @RequestParam(required = false) boolean edit,
