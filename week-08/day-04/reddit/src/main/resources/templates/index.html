@@ -3,20 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Reddit</title>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>tinymce.init({selector:'textarea'});</script>
 </head>
 <body>
 
     <header>
+        <img src="./img/reddit_long.png" alt="A reddit logo with background picturing the universe">
         <div th:if="${successMessage} != null" th:text="${successMessage}"></div>
-        <img src="" alt="A reddit logo with background picturing the universe">
+        <form th:action="@{/r/greenfox}" method="get">
+            <input type="hidden" name="newThread" value="true"/>
+            <input type="submit" value="New Thread"/>
+        </form>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout"/>
+        </form>
     </header>
 
     <main>
-All OK!
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
+        <table>
+            <tr th:each="thread : ${threads}">
+                <td th:text="${thread.getVote()}">
+                    <span><a th:href="@{/r/greenfox/{threadId}/upvote(threadId=${thread.getId())}"></a>+</span>
+                    <span><a th:href="@{/r/greenfox/{threadId}/downvote(threadId=${thread.getId())}"></a>-</span>
+                </td>
+                <td th:text="${thread.getTitle()}"></td>
+            </tr>
+        </table>
     </main>
+
+    <th:block th:if="${newThread} == true">
+        <form action="/r/greenfox/newThread" method="post" th:object="${newPost}">
+<!--            <label for="title">Title</label>-->
+            <input type="text" th:field="*{title}" required placeholder="Put the title of your post here">
+            <textarea th:field="*{content}"></textarea>
+            <input type="submit" value="Post">
+        </form>
+    </th:block>
 
     <aside>
 

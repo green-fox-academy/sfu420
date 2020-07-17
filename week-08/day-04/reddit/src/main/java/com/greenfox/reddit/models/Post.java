@@ -1,13 +1,15 @@
 package com.greenfox.reddit.models;
 
 import java.util.Date;
+import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,8 +29,12 @@ public class Post {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-//  @OneToOne(mappedBy = "id")
-//  private Post parentId;
+  @OneToMany(mappedBy = "parentId")
+  private List<Post> childIds;
+
+  @ManyToOne
+  @JoinColumn(name = "parentId", referencedColumnName = "id")
+  private Post parentId;
 
   @ManyToOne
   @JoinColumn(name = "user", referencedColumnName = "id")
@@ -39,6 +45,18 @@ public class Post {
   private Date creationDate;
 
   private String title;
+  @Column(columnDefinition = "TEXT")
   private String content;
-  private boolean isInitialPost;
+  private Integer vote = 0;
+  private boolean initialPost = false;
+
+  public void upVote() {
+    this.vote++;
+  }
+
+  public void downVote() {
+    if (this.vote > 0) {
+      this.vote--;
+    }
+  }
 }
