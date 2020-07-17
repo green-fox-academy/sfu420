@@ -2,6 +2,7 @@ package com.greenfox.reddit.controllers;
 
 import com.greenfox.reddit.models.Post;
 import com.greenfox.reddit.services.PostService;
+import com.greenfox.reddit.services.RedditUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PostController {
 
   private PostService postService;
+  private RedditUserDetailsService userService;
 
   @Autowired
-  public PostController(PostService postService) {
+  public PostController(PostService postService, RedditUserDetailsService userService) {
     this.postService = postService;
+    this.userService = userService;
   }
 
   @GetMapping({"/greenfox", "/greenfox/{newThread})"})
@@ -35,21 +38,22 @@ public class PostController {
   @GetMapping("/greenfox/{threadId}/upvote")
   public String upVote(@PathVariable Long threadId) {
     if (postService.getById(threadId).isPresent()) {
-      postService.getById(threadId).get().upVote();
+      postService.upVote(postService.getById(threadId).get());
     }
-    return "index";
+    return "redirect:/r/greenfox";
   }
 
   @GetMapping("/greenfox/{threadId}/downvote")
   public String downVote(@PathVariable Long threadId) {
     if (postService.getById(threadId).isPresent()) {
-      postService.getById(threadId).get().downVote();
+      postService.downVote(postService.getById(threadId).get());
     }
-    return "index";
+    return "redirect:/r/greenfox";
   }
 
   @PostMapping("/greenfox/newThread")
   public String newThread(@ModelAttribute Post newPost) {
+    newPost.setUser(userService.getCurrentUser());
     newPost.setInitialPost(true);
     postService.newThread(newPost);
     return "redirect:/r/greenfox";

@@ -28,4 +28,14 @@ public class PostService {
   public Post newThread(Post newPost) {
     return postRepository.save(newPost);
   }
+
+  public Post upVote(Post post) {
+    post.upVote();
+    return postRepository.save(post);
+  }
+
+  public Post downVote(Post post) {
+    post.downVote();
+    return postRepository.save(post);
+  }
 }

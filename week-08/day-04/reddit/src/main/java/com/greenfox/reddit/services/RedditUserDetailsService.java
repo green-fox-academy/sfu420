@@ -12,6 +12,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -71,5 +72,18 @@ public class RedditUserDetailsService implements UserDetailsService {
   private UserDetails buildUserForAuthentication(User user, List<GrantedAuthority> authorities) {
     return new org.springframework.security.core.userdetails.User(user.getEmail(),
         user.getPassword(), authorities);
+  }
+
+  public User getCurrentUser() {
+    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    String email;
+    if (principal instanceof UserDetails) {
+      email = ((UserDetails)principal).getUsername();
+      System.out.println(email);
+    } else {
+      email = principal.toString();
+      System.out.println("Not instanceOf: " + email);
+    }
+    return findUserByEmail(email);
   }
 }

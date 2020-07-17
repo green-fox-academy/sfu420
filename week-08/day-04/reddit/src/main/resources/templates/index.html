@@ -23,11 +23,15 @@
     <main>
         <table>
             <tr th:each="thread : ${threads}">
-                <td th:text="${thread.getVote()}">
-                    <span><a th:href="@{/r/greenfox/{threadId}/upvote(threadId=${thread.getId())}"></a>+</span>
-                    <span><a th:href="@{/r/greenfox/{threadId}/downvote(threadId=${thread.getId())}"></a>-</span>
+                <td th:text="${thread.getVote()}"></td>
+                <td>
+                    <span><a th:href="@{/r/greenfox/{threadId}/upvote(threadId=${thread.getId()})}">+</a></span>
+                    <span><a th:href="@{/r/greenfox/{threadId}/downvote(threadId=${thread.getId()})}">-</a></span>
                 </td>
                 <td th:text="${thread.getTitle()}"></td>
+                <td th:text="${thread.getContent()}"></td>
+                <td th:text="${thread.getUser().getUsername()}"></td>
+                <td th:text="${thread.getCreationDate()}"></td>
             </tr>
         </table>
     </main>
@@ -37,6 +41,7 @@
 <!--            <label for="title">Title</label>-->
             <input type="text" th:field="*{title}" required placeholder="Put the title of your post here">
             <textarea th:field="*{content}"></textarea>
+
             <input type="submit" value="Post">
         </form>
     </th:block>
