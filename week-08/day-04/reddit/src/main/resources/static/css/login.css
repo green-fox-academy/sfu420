@@ -62,10 +62,8 @@ a {
 }
 
 #username:focus, #email:focus, #password:focus, #passwordConfirmation:focus {
-    border-top: none;
-    border-left: none;
-    border-right: none;
     border-bottom: 2px solid #16a085;
+    outline: none;
 }
 
 #signup, #login {
