@@ -22,7 +22,7 @@ public class PostService {
   }
 
   public List<Post> getAllInitialPost() {
-    return postRepository.findAllByInitialPostIsTrue();
+    return postRepository.findAllByInitialPostIsTrueOrderByVoteDesc();
   }
 
   public Post newThread(Post newPost) {
@@ -36,6 +36,15 @@ public class PostService {
 
   public Post downVote(Post post) {
     post.downVote();
+    return postRepository.save(post);
+  }
+
+  public void deleteById(Long id) {
+    postRepository.deleteById(id);
+  }
+
+  public Post updatePost(Post post) {
+
     return postRepository.save(post);
   }
 }

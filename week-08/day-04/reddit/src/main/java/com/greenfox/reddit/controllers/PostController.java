@@ -3,6 +3,8 @@ package com.greenfox.reddit.controllers;
 import com.greenfox.reddit.models.Post;
 import com.greenfox.reddit.services.PostService;
 import com.greenfox.reddit.services.RedditUserDetailsService;
+import java.util.Date;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,37 +28,72 @@ public class PostController {
     this.userService = userService;
   }
 
-  @GetMapping({"/greenfox", "/greenfox/{newThread})"})
-  public String listThreads(@RequestParam(required = false) boolean newThread, Model model) {
+  @GetMapping({"/greenfox", "/greenfox/{newThread}"})
+  public String listThreads(@RequestParam(required = false) boolean newThread,
+                            @RequestParam(required = false) boolean edit,
+                            @RequestParam(required = false) Long id,
+                            Model model) {
     model.addAttribute("threads", postService.getAllInitialPost());
+    model.addAttribute("currentUser", userService.getCurrentUser());
     model.addAttribute("newPost", new Post());
-    if (newThread == true)
+
+    if (newThread)
       model.addAttribute("newThread", true);
+
+    if (id != null && postService.getById(id).isPresent())
+      model.addAttribute("currentPost", postService.getById(id).get());
+
+    if (edit)
+      model.addAttribute("editPost", true);
+
     return "index";
   }
 
   @GetMapping("/greenfox/{threadId}/upvote")
   public String upVote(@PathVariable Long threadId) {
-    if (postService.getById(threadId).isPresent()) {
-      postService.upVote(postService.getById(threadId).get());
-    }
+    Optional<Post> currentPost = postService.getById(threadId);
+    currentPost.ifPresent(post -> postService.upVote(post));
     return "redirect:/r/greenfox";
   }
 
   @GetMapping("/greenfox/{threadId}/downvote")
   public String downVote(@PathVariable Long threadId) {
-    if (postService.getById(threadId).isPresent()) {
-      postService.downVote(postService.getById(threadId).get());
-    }
+    Optional<Post> currentPost = postService.getById(threadId);
+    currentPost.ifPresent(post -> postService.downVote(post));
     return "redirect:/r/greenfox";
   }
 
   @PostMapping("/greenfox/newThread")
   public String newThread(@ModelAttribute Post newPost) {
     newPost.setUser(userService.getCurrentUser());
+    newPost.setCreationDate(new Date());
     newPost.setInitialPost(true);
     postService.newThread(newPost);
     return "redirect:/r/greenfox";
   }
 
+  @GetMapping("/greenfox/{id}/delete")    //TODO: Delete child posts as well (cascade???)
+  public String deletePost(@PathVariable Long id) {
+    Optional<Post> currentPost = postService.getById(id);
+    currentPost.ifPresent(post -> {
+      if (post.getUser().equals(userService.getCurrentUser())) {
+        postService.deleteById(id);
+      }
+    });
+    return "redirect:/r/greenfox";
+  }
+
+  @PostMapping("/greenfox/update")
+  public String updatePost(@ModelAttribute Post currentPost) {
+    Optional<Post> oldPost = postService.getById(currentPost.getId());
+    oldPost.ifPresent(post -> {
+      if (post.getUser().equals(userService.getCurrentUser())) {
+        post.setTitle(currentPost.getTitle());
+        post.setContent(currentPost.getContent());
+        post.setCreationDate(new Date());
+        postService.updatePost(post);
+      }
+    });
+    return "redirect:/r/greenfox";
+  }
 }
