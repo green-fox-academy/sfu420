@@ -38,7 +38,7 @@
 
 <main class="container-md">
     <div class="row">
-        <div class="col-9">
+        <div class="col-9 p-0">
             <table class="table-hover">
                 <tr class="" th:each="thread : ${threads}" th:id="${thread.getId()}">
                     <td class="text-right pl-2" th:text="${thread.getVote()}"></td>
@@ -60,13 +60,14 @@
                                           th:text="'Created by: ' + ${thread.getUser().getUsername()}"></span>
                                     <span class="text-black-50 mx-2"
                                           th:text="'On: ' + ${thread.getCreationDate()}"></span><br/>
-                                    <span class="text-black-50" th:text="'Comments: '+ ${thread.getChildPosts().size()}"></span>
+                                    <span class="text-black-50"
+                                          th:text="'Comments: '+ ${thread.getChildPosts().size()}"></span>
                                     <th:block th:if="${thread.getUpdateDate() != null}">
                                     <span class="text-black-50 mx-2"
                                           th:text="'Last updated: ' + ${thread.getUpdateDate()}"></span>
                                     </th:block>
                                 </div>
-                                <div id="postButtons">
+                                <div class="align-self-end" id="postButtons">
                                     <form class="d-inline" th:action="@{'/r/greenfox' + '#' + ${thread.getId()}}"
                                           method="get">
                                         <input type="hidden" name="reply" value="true"/>
@@ -97,9 +98,8 @@
                             <form action="/r/greenfox/reply" method="post" th:object="${newPost}" class="my-3">
                                 <input type="hidden" name="parentId" id="parentId" th:value="${currentPost.getId()}">
                                 <textarea th:field="*{content}" placeholder="Put your content here..."></textarea>
-                                <button class="btn btn-sm btn-outline-success rounded-0 float-right my-2" type="button">
-                                    <a class="text-success text-decoration-none" th:href="@{/r/greenfox/}">Cancel</a>
-                                </button>
+                                <a th:href="@{/r/greenfox/}"
+                                   class="btn btn-sm btn-outline-success rounded-0 float-right my-2" role="button">Cancel</a>
                                 <input class="btn btn-sm btn-success rounded-0 float-right m-2" type="submit"
                                        value="Post">
                             </form>
@@ -113,12 +113,11 @@
                                         <span class="input-group-text" id="basic-addon1">Title</span>
                                     </div>
                                     <input type="text" class="form-control" th:field="*{title}" required autofocus
-                                           placeholder="A meaningful title of your content...">
+                                           placeholder="A meaningful title for your content...">
                                 </div>
                                 <textarea name="content" id="content" th:text="*{content}"></textarea>
-                                <button class="btn btn-sm btn-outline-success rounded-0 float-right my-2" type="button">
-                                    <a class="text-success text-decoration-none" th:href="@{/r/greenfox/}">Cancel</a>
-                                </button>
+                                <a th:href="@{/r/greenfox/}"
+                                   class="btn btn-sm btn-outline-success rounded-0 float-right my-2" role="button">Cancel</a>
                                 <input class="btn btn-sm btn-success rounded-0 float-right m-2" type="submit"
                                        value="Update">
                             </form>
@@ -129,20 +128,21 @@
             </table>
 
             <th:block th:if="${newThread} == true">
-                <form action="/r/greenfox/newThread" method="post" th:object="${newPost}" id="editor">
-                    <div class="input-group my-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Title</span>
+                <div class="p-3">
+                    <form action="/r/greenfox/newThread" method="post" th:object="${newPost}" id="editor">
+                        <div class="input-group my-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Title</span>
+                            </div>
+                            <input type="text" class="form-control" th:field="*{title}" required autofocus
+                                   placeholder="A meaningful title for your content...">
                         </div>
-                        <input type="text" class="form-control" th:field="*{title}" required autofocus
-                               placeholder="A meaningful title of your content...">
-                    </div>
-                    <textarea th:field="*{content}" placeholder="Put your content here..."></textarea>
-                    <button class="btn btn-sm btn-outline-success rounded-0 float-right my-2" type="button">
-                        <a class="text-success text-decoration-none" th:href="@{/r/greenfox/}">Cancel</a>
-                    </button>
-                    <input class="btn btn-sm btn-success rounded-0 float-right m-2" type="submit" value="Post">
-                </form>
+                        <textarea th:field="*{content}" placeholder="Put your content here..."></textarea>
+                        <a th:href="@{/r/greenfox/}" class="btn btn-sm btn-outline-success rounded-0 float-right my-2"
+                           role="button">Cancel</a>
+                        <input class="btn btn-sm btn-success rounded-0 float-right m-2" type="submit" value="Post">
+                    </form>
+                </div>
             </th:block>
 
         </div>
