@@ -25,7 +25,7 @@ public class PostService {
     return postRepository.findAllByInitialPostIsTrueOrderByVoteDesc();
   }
 
-  public Post newThread(Post newPost) {
+  public Post addNewPost(Post newPost) {
     return postRepository.save(newPost);
   }
 
@@ -46,5 +46,9 @@ public class PostService {
   public Post updatePost(Post post) {
 
     return postRepository.save(post);
+  }
+
+  public List<Post> getAllChildPosts(Post parentPost) {
+    return postRepository.findPostsByParentPost(parentPost);
   }
 }

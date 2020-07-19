@@ -36,6 +36,7 @@ public class PostController {
   @GetMapping({"/greenfox", "/greenfox/{newThread}"})
   public String listThreads(@RequestParam(required = false) boolean newThread,
                             @RequestParam(required = false) boolean edit,
+                            @RequestParam(required = false) boolean reply,
                             @RequestParam(required = false) Long id,
                             Model model) {
     model.addAttribute("threads", postService.getAllInitialPost());
@@ -50,6 +51,9 @@ public class PostController {
 
     if (edit)
       model.addAttribute("editPost", true);
+
+    if (reply)
+      model.addAttribute("replyPost", true);
 
     return "index";
   }
@@ -73,7 +77,7 @@ public class PostController {
     newPost.setUser(userService.getCurrentUser());
     newPost.setCreationDate(new Date());
     newPost.setInitialPost(true);
-    postService.newThread(newPost);
+    postService.addNewPost(newPost);
     return "redirect:/r/greenfox";
   }
 
@@ -95,10 +99,23 @@ public class PostController {
       if (post.getUser().equals(userService.getCurrentUser())) {
         post.setTitle(currentPost.getTitle());
         post.setContent(currentPost.getContent());
-        post.setCreationDate(new Date());
+        post.setUpdateDate(new Date());
         postService.updatePost(post);
       }
     });
+    return "redirect:/r/greenfox";
+  }
+
+  @PostMapping("/greenfox/reply")
+  public String replyPost(@ModelAttribute Post newPost,
+                          @RequestParam Long parentId) {
+    Optional<Post> parentPost = postService.getById(parentId);
+    if (parentPost.isPresent()) {
+      newPost.setUser(userService.getCurrentUser());
+      newPost.setCreationDate(new Date());
+      newPost.setParentPost(parentPost.get());
+      postService.addNewPost(newPost);
+    }
     return "redirect:/r/greenfox";
   }
 }

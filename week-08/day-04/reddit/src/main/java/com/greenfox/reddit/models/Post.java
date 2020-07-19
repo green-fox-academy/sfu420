@@ -29,12 +29,12 @@ public class Post {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @OneToMany(mappedBy = "parentId")
-  private List<Post> childIds;
+  @OneToMany(mappedBy = "parentPost")
+  private List<Post> childPosts;
 
   @ManyToOne
-  @JoinColumn(name = "parentId", referencedColumnName = "id")
-  private Post parentId;
+  @JoinColumn(name = "parentPost", referencedColumnName = "id")
+  private Post parentPost;
 
   @ManyToOne
   @JoinColumn(name = "user", referencedColumnName = "id")
@@ -43,6 +43,10 @@ public class Post {
   @DateTimeFormat(pattern = "yyyy.MM.dd HH:mm:ss")
   @Temporal(TemporalType.TIMESTAMP)
   private Date creationDate;
+
+  @DateTimeFormat(pattern = "yyyy.MM.dd HH:mm:ss")
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date updateDate;
 
   private String title;
   @Column(columnDefinition = "TEXT")

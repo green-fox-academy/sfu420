@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface PostRepository extends CrudRepository<Post, Long> {
 
   List<Post> findAllByInitialPostIsTrueOrderByVoteDesc();
+
+  List<Post> findPostsByParentPost(Post parentPost);
 }
