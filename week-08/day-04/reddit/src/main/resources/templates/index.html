@@ -9,9 +9,9 @@
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>tinymce.init({selector: 'textarea'});</script>
+    <script>tinymce.init({selector: 'textarea', height: 350});</script>
 </head>
-<body>
+<body class="bg-light">
 
 <header>
     <nav class="navbar sticky-top navbar-dark bg-dark">
@@ -29,7 +29,7 @@
             </li>
             <li class="nav-item">
                 <form th:action="@{/logout}" method="post">
-                    <input class="btn btn-outline-success ml-2" type="submit" value="Logout"/>
+                    <input class="btn btn-outline-success rounded-0 ml-2" type="submit" value="Logout"/>
                 </form>
             </li>
         </ul>
@@ -41,16 +41,16 @@
         <div class="col-9">
             <table class="table-hover">
                 <tr class="" th:each="thread : ${threads}">
-                    <td class="pl-2" th:text="${thread.getVote()}"></td>
+                    <td class="text-right pl-2" th:text="${thread.getVote()}"></td>
                     <td class="px-2">
                         <span><a th:href="@{/r/greenfox/{threadId}/upvote(threadId=${thread.getId()})}">
-                            <i class="fas fa-thumbs-up text-secondary"></i></a>
+                            <i class="fas fa-thumbs-up text-success"></i></a>
                         </span>
                         <span><a th:href="@{/r/greenfox/{threadId}/downvote(threadId=${thread.getId()})}">
-                            <i class="fas fa-thumbs-down text-secondary"></i></a>
+                            <i class="fas fa-thumbs-down text-success"></i></a>
                         </span>
                     </td>
-                    <td class="p-3 bg-light border-bottom border-success">
+                    <td class="p-3 bg-white border-bottom border-success">
                         <h4 th:text="${thread.getTitle()}"></h4>
                         <div th:utext="${thread.getContent()}"></div>
                         <div class="d-inline">
@@ -58,7 +58,7 @@
                                   th:text="'Created by: ' + ${thread.getUser().getUsername()}"></span>
                             <span class="text-black-50 mx-2" th:text="'On: ' + ${thread.getCreationDate()}"></span>
                             <div class="float-right">
-                                <button class="btn btn-sm btn-success" type="button">
+                                <button class="btn btn-sm btn-success rounded-0" type="button">
                                     <a class="text-white text-decoration-none"
                                        th:href="@{/r/greenfox/{threadId}/reply(threadId=${thread.getId()})}">Replay</a>
                                 </button>
@@ -66,11 +66,11 @@
                                     <form class="d-inline" th:action="@{/r/greenfox}" method="get">
                                         <input type="hidden" name="edit" value="true"/>
                                         <input type="hidden" name="id" th:value="${thread.getId()}">
-                                        <input class="btn  btn-sm btn-success" type="submit" value="Edit"/>
+                                        <input class="btn  btn-sm btn-outline-success rounded-0" type="submit" value="Edit"/>
                                     </form>
                                     <form class="d-inline" th:action="@{/r/greenfox/{id}/delete(id=${thread.getId()})}"
                                           method="get">
-                                        <input class="btn btn-sm btn-success" type="submit" value="Delete"/>
+                                        <input class="btn btn-sm btn-outline-success rounded-0" type="submit" value="Delete"/>
                                     </form>
                                 </th:block>
                             </div>
@@ -86,10 +86,10 @@
                                            placeholder="A meaningful title of your content...">
                                 </div>
                                 <textarea name="content" id="content" th:text="*{content}"></textarea>
-                                <button class="btn btn-sm btn-success float-right my-2" type="button">
-                                    <a class="text-white text-decoration-none" th:href="@{/r/greenfox/}">Cancel</a>
+                                <button class="btn btn-sm btn-outline-success rounded-0 float-right my-2" type="button">
+                                    <a class="text-success text-decoration-none" th:href="@{/r/greenfox/}">Cancel</a>
                                 </button>
-                                <input class="btn btn-sm btn-success float-right m-2" type="submit" value="Update">
+                                <input class="btn btn-sm btn-success rounded-0 float-right m-2" type="submit" value="Update">
                             </form>
                         </th:block>
                     </td>
@@ -106,20 +106,31 @@
                                placeholder="A meaningful title of your content...">
                     </div>
                     <textarea th:field="*{content}" placeholder="Put your content here..."></textarea>
-                    <button class="btn btn-sm btn-success float-right my-2" type="button">
-                        <a class="text-white text-decoration-none" th:href="@{/r/greenfox/}">Cancel</a>
+                    <button class="btn btn-sm btn-outline-success rounded-0 float-right my-2" type="button">
+                        <a class="text-success text-decoration-none" th:href="@{/r/greenfox/}">Cancel</a>
                     </button>
-                    <input class="btn btn-sm btn-success float-right m-2" type="submit" value="Post">
+                    <input class="btn btn-sm btn-success rounded-0 float-right m-2" type="submit" value="Post">
                 </form>
             </th:block>
 
         </div>
 
-        <aside class="col-3">
-            <form class="nav-item" th:action="@{'/r/greenfox' + '#editor'}" method="get">
+        <aside class="col-3 d-flex flex-column bg-dark">
+            <form class="w-100" th:action="@{'/r/greenfox' + '#editor'}" method="get">
                 <input type="hidden" name="newThread" value="true"/>
-                <input class="btn btn-outline-success ml-2" type="submit" value="New Thread"/>
+                <input class="btn btn-success rounded-0 w-100 my-2" type="submit" value="Submit a New Thread"/>
             </form>
+            <div class="p-2 text-center bg-white"><strong>ABOUT </strong><a href="/r/greenfox" class="text-decoration-none">r/greenfox</a></div>
+            <div class="p-2 text-center bg-light">Share & discuss informative content on:</div>
+            <div class="p-2 bg-light">
+                <ul>
+                    <li>Computer Science</li>
+                    <li>Technologies</li>
+                    <li>Editors</li>
+                    <li>Research</li>
+                    <li>Proof of Concepts</li>
+                </ul>
+            </div>
         </aside>
     </div>
 </main>
