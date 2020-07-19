@@ -118,4 +118,18 @@ public class PostController {
     }
     return "redirect:/r/greenfox";
   }
+
+  @GetMapping("/greenfox/threadView")
+  public String threadView(@RequestParam Long id,
+                           @RequestParam(required = false) boolean edit,
+                           @RequestParam(required = false) boolean reply,
+                           Model model) {
+    Optional<Post> post = postService.getById(id);
+    if (post.isPresent()) {
+      model.addAttribute("thread", post.get());
+      model.addAttribute("currentUser", userService.getCurrentUser());
+      model.addAttribute("newPost", new Post());
+    }
+    return "thread";
+  }
 }
