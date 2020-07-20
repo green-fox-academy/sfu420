@@ -82,7 +82,7 @@ a {
     cursor: pointer;
 }
 
-#orSignup {
+#orSignup, #orLogin {
     float: right;
     border: 1px solid #16a085;
     background-color: white;

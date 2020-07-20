@@ -28,6 +28,7 @@
             <input type="password" name="passwordConfirmation" id="passwordConfirmation" th:value="*{password}" placeholder="Retype password"
                    required>
             <input type="submit" value="Sign me up" id="signup">
+            <button type="button" id="orLogin"><a href="/login">Back to Login</a></button>
             <div th:if="${param.error}">
                 Invalid email and password.
             </div>
