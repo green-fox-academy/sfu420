@@ -9,35 +9,35 @@ public class anagramTester {
   String rightHand;
 
   @Test
-  public void anagramTesterTrue() {
+  void anagramTesterTrue() {
     leftHand = "anna";
     rightHand = "nana";
     assertTrue(Main.anagramChecker(leftHand, rightHand));
   }
 
   @Test
-  public void anagramTesterFalse() {
+  void anagramTesterFalse() {
     leftHand = "anna";
     rightHand = "anba";
     assertFalse(Main.anagramChecker(leftHand, rightHand));
   }
 
   @Test
-  public void stringLengthNotEquals() {
+  void stringLengthNotEquals() {
     leftHand = "anna";
     rightHand = "annna";
     assertFalse(Main.lengthEquals(leftHand, rightHand));
   }
 
   @Test
-  public void stringsAreEmpty() {
+  void stringsAreEmpty() {
     leftHand = "";
     rightHand = "";
     assertTrue(Main.lengthEquals(leftHand, rightHand));
   }
 
   @Test
-  public void stringsAreNullOrEmpty() {
+  void stringsAreNullOrEmpty() {
     assertFalse(Main.valuesAreSet(leftHand, rightHand));
   }
 }
