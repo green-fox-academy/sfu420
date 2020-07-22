@@ -1,11 +1,13 @@
 package com.greenfox.restapi.controllers;
 
+import com.greenfox.restapi.models.DTO.ArrayHandler;
 import com.greenfox.restapi.models.DTO.DoUntil;
 import com.greenfox.restapi.models.DTO.Doubling;
 import com.greenfox.restapi.models.DTO.ErrorMessage;
 import com.greenfox.restapi.models.DTO.Greeter;
 import java.util.HashMap;
 import java.util.Map;
+import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,7 +49,7 @@ public class RawController {
     }
   }
 
-  
+
   @GetMapping("/appenda/{appendable}")
   public ResponseEntity<? extends Object> appenda(@PathVariable String appendable) {
     HashMap<String, String> output = new HashMap<>();
@@ -71,6 +73,34 @@ public class RawController {
     if (action.equals("factor")) {
       return ResponseEntity.ok().body(new DoUntil().factor(payload.get("until")));
     }
+    return null;
+  }
+
+  @PostMapping("/arrays")
+  public ResponseEntity<? extends Object> arrayHandler(@RequestBody ArrayHandler payload) {
+
+    JSONObject response;
+
+    if (payload.getWhat() == null || payload.getWhat().isEmpty() ||
+        payload.getNumbers() == null || payload.getNumbers().length == 0) {
+      return ResponseEntity.ok(new ErrorMessage("Please provide what to do with the numbers!"));
+    }
+
+    if (payload.getWhat().equals("sum")) {
+      response = new JSONObject().put("result", payload.sum());
+      return ResponseEntity.ok(response.toMap());
+    }
+
+    if (payload.getWhat().equals("multiply")) {
+      response = new JSONObject().put("result", payload.multiply());
+      return ResponseEntity.ok(response.toMap());
+    }
+
+    if (payload.getWhat().equals("double")) {
+      response = new JSONObject().put("result", payload.doubleIt());
+      return ResponseEntity.ok(response.toMap());
+    }
+
     return null;
   }
 }
