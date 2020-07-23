@@ -34,4 +34,47 @@ public class MVCTests {
         .andExpect(status().isOk())
         .andExpect(content().json("{\"error\": \"Please provide an input!\"}"));
   }
+
+  @Test
+  public void doublingGetsInput5() throws Exception {
+    mockMvc.perform(get("/doubling?input=5"))
+        .andExpect(status().isOk())
+        .andExpect(content().json("{\"received\":5,\"result\":10}"));
+  }
+
+  @Test
+  public void greeterGetsNoValue() throws Exception {
+    mockMvc.perform(get("/greeter"))
+        .andExpect(status().is(400))
+        .andExpect(content().json("{\"error\":\"Please provide a name and a title!\"}"));
+  }
+
+  @Test
+  public void greeterGetsOnlyNameValue() throws Exception {
+    mockMvc.perform(get("/greeter?name=Vader"))
+        .andExpect(status().is(400))
+        .andExpect(content().json("{\"error\":\"Please provide a title!\"}"));
+  }
+
+  @Test
+  public void greeterGetsBothValues() throws Exception {
+    mockMvc.perform(get("/greeter?name=Vader&title=Sith"))
+        .andExpect(status().isOk())
+        .andExpect(content().json("{\"welcome_message\":\"Oh, hi there Vader, my dear Sith!\"}"));
+  }
+
+  @Test
+  public void appendaGetsCorrentValue() throws Exception {
+    mockMvc.perform(get("/appenda/kuty"))
+        .andExpect(status().isOk())
+        .andExpect(content().json("{\"appended\":\"kutya\"}"));
+  }
+
+  @Test
+  public void appendaGetsNoValue() throws Exception {
+    mockMvc.perform(get("/appenda"))
+        .andExpect(status().is(404))
+        .andExpect(content().string(""));
+//            "{\"timestamp\":\"2020-07-23T15:19:30.823+00:00\",\"status\":404,\"error\":\"Not Found\",\"message\":\"No message available\",\"path\":\"/appenda\"}"));
+  }
 }
