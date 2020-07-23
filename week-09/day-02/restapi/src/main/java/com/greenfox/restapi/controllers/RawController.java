@@ -22,7 +22,7 @@ public class RawController {
 
 
   @GetMapping("/doubling")
-  public ResponseEntity<? extends Object> doubling(@RequestParam(required = false) Integer input) {
+  public ResponseEntity<?> doubling(@RequestParam(required = false) Integer input) {
 
     if (input == null) {
       return ResponseEntity.status(HttpStatus.OK)
@@ -35,7 +35,7 @@ public class RawController {
 
 
   @GetMapping("/greeter")
-  public ResponseEntity<? extends Object> greeter(@RequestParam(required = false) String name,
+  public ResponseEntity<?> greeter(@RequestParam(required = false) String name,
                                                   @RequestParam(required = false) String title) {
     if (name == null && title == null) {
       return ResponseEntity.status(400)
@@ -51,7 +51,7 @@ public class RawController {
 
 
   @GetMapping("/appenda/{appendable}")
-  public ResponseEntity<? extends Object> appenda(@PathVariable String appendable) {
+  public ResponseEntity<?> appenda(@PathVariable String appendable) {
     HashMap<String, String> output = new HashMap<>();
     output.put("appended", appendable.concat("a"));
 
@@ -60,7 +60,7 @@ public class RawController {
 
 
   @PostMapping("/dountil/{action}")
-  public ResponseEntity<? extends Object> actions(@PathVariable String action,
+  public ResponseEntity<?> actions(@PathVariable String action,
                                                   @RequestBody Map<String, Integer> payload) {
     if (payload.get("until") == null) {
       return ResponseEntity.ok().body(new ErrorMessage("Please provide a number!"));
@@ -77,7 +77,7 @@ public class RawController {
   }
 
   @PostMapping("/arrays")
-  public ResponseEntity<? extends Object> arrayHandler(@RequestBody ArrayHandler payload) {
+  public ResponseEntity<?> arrayHandler(@RequestBody ArrayHandler payload) {
 
     JSONObject response;
 
