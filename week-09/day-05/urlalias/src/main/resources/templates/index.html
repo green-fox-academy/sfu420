@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+    <th:block th:if="${message} == 'success'">
+        <p th:utext="'Your URL is aliased to <strong>' + ${createdAlias} + '</strong> and your secret code is <strong>' +
+        ${createdSecret} + '</strong>.'"></p>
+    </th:block>
+
+    <th:block th:if="${message} == 'error'">
+        <p style="color: red">Your alias is already in use!</p>
+    </th:block>
+
+    <form action="/save-link" method="post" th:object="${newAlias}">
+        <label th:for="*{baseUrl}">URL</label>
+        <input type="text" th:field="*{baseUrl}" required>
+        <label th:for="*{urlAlias}">Alias</label>
+        <input type="text" th:field="*{urlAlias}" required>
+        <input type="submit" name="submit" value="Submit">
+    </form>
+</body>
+
+</html>
