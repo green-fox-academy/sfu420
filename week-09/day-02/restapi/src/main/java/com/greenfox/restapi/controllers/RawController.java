@@ -36,7 +36,7 @@ public class RawController {
 
   @GetMapping("/greeter")
   public ResponseEntity<?> greeter(@RequestParam(required = false) String name,
-                                                  @RequestParam(required = false) String title) {
+                                   @RequestParam(required = false) String title) {
     if (name == null && title == null) {
       return ResponseEntity.status(400)
           .body(new ErrorMessage("Please provide a name and a title!"));
@@ -52,16 +52,21 @@ public class RawController {
 
   @GetMapping("/appenda/{appendable}")
   public ResponseEntity<?> appenda(@PathVariable String appendable) {
-    HashMap<String, String> output = new HashMap<>();
-    output.put("appended", appendable.concat("a"));
 
-    return ResponseEntity.ok().body(output);
+    HashMap<String, String> response = new HashMap<>();
+    response.put("appended", appendable.concat("a"));
+
+    return ResponseEntity.ok().body(response);
   }
 
+  @GetMapping("/appenda")
+  public ResponseEntity<?> appenda404() {
+    return ResponseEntity.notFound().build();
+  }
 
   @PostMapping("/dountil/{action}")
   public ResponseEntity<?> actions(@PathVariable String action,
-                                                  @RequestBody Map<String, Integer> payload) {
+                                   @RequestBody Map<String, Integer> payload) {
     if (payload.get("until") == null) {
       return ResponseEntity.ok().body(new ErrorMessage("Please provide a number!"));
     }

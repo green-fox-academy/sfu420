@@ -1,8 +1,10 @@
 package com.greenfox.restapi;
 
+import static org.hamcrest.core.Is.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 
 import com.greenfox.restapi.controllers.RawController;
@@ -73,8 +75,11 @@ public class MVCTests {
   @Test
   public void appendaGetsNoValue() throws Exception {
     mockMvc.perform(get("/appenda"))
+//        .contentType(MediaType.APPLICATION_JSON)
         .andExpect(status().is(404))
-        .andExpect(content().string(""));
-//            "{\"timestamp\":\"2020-07-23T15:19:30.823+00:00\",\"status\":404,\"error\":\"Not Found\",\"message\":\"No message available\",\"path\":\"/appenda\"}"));
+        .andExpect(jsonPath("$").doesNotExist());
+//        .andExpect(content().json("{\"timestamp\":\"2020-07-23T15:19:30.823+00:00\",\"status\":404,\"error\":\"Not Found\",\"message\":\"No message available\",\"path\":\"/appenda\"}"));
+//        .andExpect(content().contentType(contentType))
+//        .andExpect(jsonPath("$.error", is("Not Found")));
   }
 }
