@@ -1,6 +1,8 @@
 package com.greenfox.urlalias.services;
 
+import com.greenfox.urlalias.entities.DTO.AliasToList;
 import com.greenfox.urlalias.entities.models.Alias;
+import com.greenfox.urlalias.repositories.AliasListRepo;
 import com.greenfox.urlalias.repositories.AliasRepository;
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class AliasService {
 
   private AliasRepository aliasRepository;
+  private AliasListRepo aliasListRepo;
 
   @Autowired
   public AliasService(AliasRepository aliasRepository) {
@@ -25,7 +28,11 @@ public class AliasService {
     return aliasRepository.findByUrlAlias(urlAlias);
   }
 
-  public List<Alias> listAll() {
-    return aliasRepository.listAll();
+//  public List<Alias> listAll() {
+//    return (List<Alias>) aliasRepository.findAll();
+//  }
+
+  public List<AliasToList> listAll() {
+    return aliasListRepo.listAll();
   }
 }

@@ -1,5 +1,6 @@
 package com.greenfox.urlalias.entities.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,8 @@ public class Alias {
 
   private String baseUrl;
   private String urlAlias;
-  private Long secret  = (long)(Math.random() * 9000) + 1000;
+  @JsonIgnore
+  private Long secret = (long) (Math.random() * 9000) + 1000;
   private Long hitCount = 0L;
 
   public Alias(String baseUrl, String urlAlias, Long hitCount) {
