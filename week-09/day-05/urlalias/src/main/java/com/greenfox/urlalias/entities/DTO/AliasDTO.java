@@ -8,17 +8,11 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class AliasToList {
+@AllArgsConstructor
+public class AliasDTO {
 
   private Long id;
   private String baseUrl;
   private String urlAlias;
   private Long hitCount;
-
-  public AliasToList(Long id, String baseUrl, String urlAlias, Long hitCount) {
-    this.id = id;
-    this.baseUrl = baseUrl;
-    this.urlAlias = urlAlias;
-    this.hitCount = hitCount;
-  }
 }

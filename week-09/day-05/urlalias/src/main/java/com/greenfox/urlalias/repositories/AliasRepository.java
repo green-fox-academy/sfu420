@@ -1,6 +1,6 @@
 package com.greenfox.urlalias.repositories;
 
-import com.greenfox.urlalias.entities.DTO.AliasToList;
+import com.greenfox.urlalias.entities.DTO.AliasDTO;
 import com.greenfox.urlalias.entities.models.Alias;
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +13,6 @@ public interface AliasRepository extends CrudRepository<Alias, Long> {
 
   Optional<Alias> findByUrlAlias(String urlAlias);
 
-//  @Query("SELECT id, baseUrl, urlAlias, hitCount FROM Alias")
-//  List<AliasToList> listAll();
+  @Query("SELECT new com.greenfox.urlalias.entities.DTO.AliasDTO(a.id, a.baseUrl, a.urlAlias, a.hitCount) FROM Alias as a")
+  List<AliasDTO> listAll();
 }
