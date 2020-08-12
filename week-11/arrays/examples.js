@@ -32,21 +32,21 @@ console.log(triples);
 
 
 let evens2 = [1, 2, 3, 4, 5].filter(function (e) {
-    return e % 2 == 0;
+    return e % 2 === 0;
 });
 console.log(evens2);
 // [ 2, 4 ]
 
 
 let isAllEven = [2, 6, 14, 5, 4].every(function (e) {
-    return e % 2 == 0;
+    return e % 2 === 0;
 });
 console.log(isAllEven);
 // false
 
 
 let isAnyEven = [2, 6, 14, 5, 4].some(function (e) {
-    return e % 2 == 0;
+    return e % 2 === 0;
 });
 console.log(isAnyEven);
 // true
